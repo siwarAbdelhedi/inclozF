@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Fragment } from 'react';
+import Header from './components/Navbar/Header'
+import HomeScreen from './pages/Home';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App=()=> {
   return (
-    <>
-      <h1>Hello from  react</h1>
-    </>
-  )
+    <div>
+      <Header/>
+      <Fragment>
+        <HomeScreen/>
+      </Fragment>
+    </div>
+  );
 }
 
 export default App
