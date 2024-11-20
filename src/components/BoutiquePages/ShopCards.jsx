@@ -1,12 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Button,
-  Typography,
-  Grid,
-  Box,
-} from "@mui/material";
+import {Card, CardContent, CardMedia, Button, Typography, Grid, Box,} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import tShirt from "../../assets/tshirt.png";
 import Jogging from "../../assets/jogging.png";
@@ -16,22 +8,22 @@ import Veste from "../../assets/veste.png";
 const items = [
   {
     title: "T-SHIRT",
-    description: "Lorem ipsum dolor sit amet.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
     imgSrc: [tShirt],
   },
   {
     title: "Jogging",
-    description: "Lorem ipsum dolor sit amet.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
     imgSrc: [Jogging],
   },
   {
     title: "Short",
-    description: "Lorem ipsum dolor sit amet.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
     imgSrc: [Short],
   },
   {
     title: "Veste",
-    description: "Lorem ipsum dolor sit amet.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
     imgSrc: [Veste],
   },
 ];
@@ -72,7 +64,7 @@ const ShopCards = () => {
                 component="img"
                 image={item.imgSrc}
                 alt={item.title}
-                // style={{ backgroundColor: '#FD4802' }}
+                // style={{ width: "100%", height: "auto", borderRadius: "8px" }}
               />
               <CardContent>
                 <Typography

@@ -5,6 +5,7 @@ import HomeScreen from './pages/Home';
 import Footer from './components/Footer';
 import BoutiquePage from './pages/BoutiquePage';
 import Panier from './components/BoutiquePages/Panier';
+import ContactForm from './components/Cantact/ContactForm'
 
 const theme = createTheme({
   palette: {
@@ -37,6 +38,8 @@ const App=()=> {
           <Route path="/" element={<HomeScreen />} />     
           <Route path="/boutique" element={<BoutiquePage />} /> 
           <Route path="/panier" element={<Panier />} /> 
+          <Route path="/ContactForm" element={<ContactForm />} /> 
+
         </Routes>
         <Footer />
       </Router>
