@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -19,28 +19,35 @@ const pages = [
   { label: "Contact", path: "/ContactForm" },
 ];
 
+// ✅ Styles du Navbar
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: "#FFF6EB",
   color: "#14235E",
+  boxShadow: "none",
+  borderBottom: "3px solid #FD4802",
 }));
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
+  padding: theme.spacing(1, 4),
 }));
 
 const NavButtons = styled(Box)(({ theme }) => ({
   display: "flex",
-  gap: theme.spacing(2),
+  gap: theme.spacing(4),
   [theme.breakpoints.down("md")]: {
-    display: "none", // Cache les boutons sur les écrans petits
+    display: "none",
   },
 }));
 
 const StyledButton = styled(Button)(({ theme }) => ({
   color: "#14235E",
   fontFamily: "Decalotype, sans-serif",
+  fontSize: "16px",
+  fontWeight: "bold",
+  textTransform: "none",
   "&:hover": {
     backgroundColor: "#FCDAAF",
   },
@@ -50,6 +57,11 @@ const ConnectButton = styled(Button)(({ theme }) => ({
   backgroundColor: "#FD4802",
   color: "#FFF6EB",
   fontFamily: "Decalotype, sans-serif",
+  fontSize: "16px",
+  fontWeight: "bold",
+  textTransform: "none",
+  padding: "8px 20px",
+  borderRadius: "20px", // Bouton arrondi comme sur la maquette
   "&:hover": {
     backgroundColor: "#14235E",
   },
@@ -69,9 +81,9 @@ function Header() {
   return (
     <StyledAppBar position="static">
       <StyledToolbar>
-        {/* Logo */}
+        {/* ✅ Logo centré verticalement */}
         <Box
-          component={Link}
+          component={Link} 
           to="/"
           sx={{
             display: "flex",
@@ -79,10 +91,10 @@ function Header() {
             textDecoration: "none",
           }}
         >
-          <img src={Logo} alt="Incloz Logo" style={{ height: "40px" }} />
+          <img src={Logo} alt="Incloz Logo" style={{ height: "45px" }} />
         </Box>
 
-        {/* Desktop Navigation Buttons */}
+        {/* ✅ Boutons Desktop */}
         <NavButtons>
           {pages.map((page) => (
             <StyledButton key={page.label} component={Link} to={page.path}>
@@ -91,7 +103,7 @@ function Header() {
           ))}
         </NavButtons>
 
-        {/* Mobile Menu Icon */}
+        {/* ✅ Menu Mobile */}
         <Box sx={{ display: { xs: "flex", md: "none" } }}>
           <IconButton
             size="large"
@@ -102,7 +114,6 @@ function Header() {
             <MenuIcon />
           </IconButton>
 
-          {/* Mobile Menu Items */}
           <Menu
             anchorEl={anchorElNav}
             open={Boolean(anchorElNav)}
@@ -117,6 +128,7 @@ function Header() {
                   sx={{
                     color: "#14235E",
                     fontFamily: "Decalotype, sans-serif",
+                    fontWeight: "bold",
                   }}
                 >
                   {page.label}
@@ -126,11 +138,11 @@ function Header() {
           </Menu>
         </Box>
 
-        {/* Actions (Login Button + Cart Icon) */}
+        {/* ✅ Bouton Se connecter + Icône Panier */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <ConnectButton
             variant="contained"
-            sx={{ display: { xs: "none", md: "block" } }} // Cache sur mobile
+            sx={{ display: { xs: "none", md: "block" } }}
           >
             Se connecter
           </ConnectButton>
