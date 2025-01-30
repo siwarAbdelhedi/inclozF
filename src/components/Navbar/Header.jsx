@@ -10,7 +10,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/Logo.png";
+import Logo from "../../assets/logo.png";
 
 const pages = [
   { label: "La boutique", path: "/boutique" },
@@ -83,7 +83,7 @@ function Header() {
       <StyledToolbar>
         {/* ✅ Logo centré verticalement */}
         <Box
-          component={Link} 
+          component={Link}
           to="/"
           sx={{
             display: "flex",
