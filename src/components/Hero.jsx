@@ -183,21 +183,53 @@
 // export default Hero;
 
 
-import { Box, Typography, Button, Container } from '@mui/material';
+import { Box, Typography, Button, Container, Grid } from '@mui/material';
 
 const Hero = () => {
   return (
-    <Box sx={{ backgroundColor: '#FD4802', padding: '50px 0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Container maxWidth="lg" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Box>
-          <Typography variant="h3" sx={{ color: 'white', fontWeight: 'bold', fontFamily: 'Decalotype' }}>
-            Votre marque de vêtements de sport <br /> <span style={{ color: '#14235E' }}>100% adaptable</span>
-          </Typography>
-          <Button variant="contained" sx={{ backgroundColor: 'white', color: '#14235E', mt: 2, fontWeight: 'bold' }}>
-            Qui sommes nous ?
-          </Button>
-        </Box>
-        <Box component="img" src="/assets/hero-athlete.png" alt="Athlète en fauteuil" sx={{ maxHeight: 400 }} />
+    // <Box sx={{ backgroundColor: '#FD4802', padding: '50px 0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    //   <Container maxWidth="lg" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    //     <Box>
+    //       <Typography variant="h3" sx={{ color: 'white', fontWeight: 'bold', fontFamily: 'Decalotype' }}>
+    //         Votre marque de vêtements de sport <br /> <span style={{ color: '#14235E' }}>100% adaptable</span>
+    //       </Typography>
+    //       <Button variant="contained" sx={{ backgroundColor: 'white', color: '#14235E', mt: 2, fontWeight: 'bold' }}>
+    //         Qui sommes nous ?
+    //       </Button>
+    //     </Box>
+    //     <Box component="img" src="/assets/hero-athlete.png" alt="Athlète en fauteuil" sx={{ maxHeight: 400 }} />
+    //   </Container>
+    // </Box>
+
+    <Box sx={{ bgcolor: 'primary.main', color: 'white', py: 8 }}>
+      <Container>
+        <Grid container alignItems="center" spacing={4}>
+          <Grid item xs={12} md={6}>
+            <Typography variant="h2" component="h1" gutterBottom>
+              Votre marque de vêtements de sport 100% adaptable
+            </Typography>
+            <Button 
+              variant="contained" 
+              sx={{ 
+                bgcolor: 'white', 
+                color: 'primary.main',
+                '&:hover': { bgcolor: 'grey.100' }
+              }}
+            >
+              Je commence
+            </Button>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box component="img" 
+              src="/placeholder-image.jpg" 
+              alt="Athlete" 
+              sx={{ 
+                width: '100%',
+                borderRadius: 2
+              }}
+            />
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   );
