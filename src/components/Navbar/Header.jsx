@@ -24,7 +24,7 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: "#FFF6EB",
   color: "#14235E",
   boxShadow: "none",
-  borderBottom: "3px solid #FD4802",
+  //borderBottom: "3px solid #FD4802",
 }));
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
