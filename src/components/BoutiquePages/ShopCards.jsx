@@ -1,12 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Button,
-  Typography,
-  Grid,
-  Box,
-} from "@mui/material";
+import { Card, CardContent, CardMedia, Button, Typography, Grid, Box} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import tShirt from "../../assets/tshirt.png";
 import Jogging from "../../assets/jogging.png";

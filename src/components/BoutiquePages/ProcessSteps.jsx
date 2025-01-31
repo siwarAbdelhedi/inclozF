@@ -46,7 +46,7 @@ const StepDescription = styled(Typography)({
 });
 
 // Style du bouton "Remplir la fiche de renseignement"
-const StyledButton = styled(Button)(({}) => ({
+const StyledButton = styled(Button)(() => ({
   backgroundColor: "#14235E",
   color: "white",
   fontWeight: "bold",

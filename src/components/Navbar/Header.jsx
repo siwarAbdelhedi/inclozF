@@ -12,6 +12,7 @@ import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 
+
 const pages = [
   { label: "La boutique", path: "/boutique" },
   { label: "Blog", path: "/blog" },
@@ -20,11 +21,12 @@ const pages = [
 ];
 
 // ✅ Styles du Navbar
-const StyledAppBar = styled(AppBar)(({ theme }) => ({
+const StyledAppBar = styled(AppBar)(() => ({
   backgroundColor: "#FFF6EB",
   color: "#14235E",
   boxShadow: "none",
   //borderBottom: "3px solid #FD4802",
+  //width: 1000
 }));
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
@@ -42,7 +44,7 @@ const NavButtons = styled(Box)(({ theme }) => ({
   },
 }));
 
-const StyledButton = styled(Button)(({ theme }) => ({
+const StyledButton = styled(Button)(() => ({
   color: "#14235E",
   fontFamily: "Decalotype, sans-serif",
   fontSize: "16px",
@@ -53,7 +55,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const ConnectButton = styled(Button)(({ theme }) => ({
+const ConnectButton = styled(Button)(() => ({
   backgroundColor: "#FD4802",
   color: "#FFF6EB",
   fontFamily: "Decalotype, sans-serif",
@@ -61,7 +63,7 @@ const ConnectButton = styled(Button)(({ theme }) => ({
   fontWeight: "bold",
   textTransform: "none",
   padding: "8px 20px",
-  borderRadius: "20px", // Bouton arrondi comme sur la maquette
+  borderRadius: "20px",
   "&:hover": {
     backgroundColor: "#14235E",
   },
@@ -91,7 +93,7 @@ function Header() {
             textDecoration: "none",
           }}
         >
-          <img src={Logo} alt="Incloz Logo" style={{ height: "45px" }} />
+          <img src={Logo} alt="Incloz Logo" style={{ height: "30px" }} />
         </Box>
 
         {/* ✅ Boutons Desktop */}
