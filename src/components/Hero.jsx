@@ -68,7 +68,7 @@ const Hero = () => {
   return (
     <HeroContainer>
       <HeroContent>
-        {/* ✅ Texte à gauche */}
+        {/* Texte à gauche */}
         <TextContainer>
           <Typography
             variant="h2"
@@ -85,7 +85,7 @@ const Hero = () => {
           <StyledButton sx={{ mt: 3 }}>Qui sommes nous ?</StyledButton>
         </TextContainer>
 
-        {/* ✅ Image bien alignée à droite */}
+        {/* Image bien alignée à droite */}
         <HeroImage src={Athlete} alt="Athlète en fauteuil roulant" />
       </HeroContent>
     </HeroContainer>
