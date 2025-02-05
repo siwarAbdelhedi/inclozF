@@ -1,4 +1,11 @@
-import { Box, Container, Grid, Typography, Link, IconButton } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid,
+  Typography,
+  Link,
+  IconButton,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -9,9 +16,9 @@ const FooterContainer = styled(Box)(({ theme }) => ({
   backgroundColor: "#FFE5CF",
   padding: theme.spacing(6, 2),
   fontFamily: "Decalotype, sans-serif",
-  minHeight: "300px",
   display: "flex",
-  alignItems: "flex-start",
+  alignItems: "flex-end",
+  bottom: 0,
   [theme.breakpoints.down("sm")]: {
     padding: theme.spacing(4, 2),
   },
@@ -31,7 +38,7 @@ const VerticalDivider = styled(Box)(({ theme }) => ({
 
 const FooterTitle = styled(Typography)(() => ({
   fontWeight: "600",
-  marginBottom: "16px", 
+  marginBottom: "16px",
   color: "#14235E",
   fontFamily: "Decalotype, sans-serif",
   fontSize: "1rem",
@@ -42,7 +49,7 @@ const FooterLink = styled(Link)(() => ({
   textDecoration: "none",
   fontFamily: "Poppins, sans-serif",
   fontSize: "0.875rem",
-  lineHeight: "2", 
+  lineHeight: "2",
   display: "block",
   "&:hover": {
     color: "#FD5C35",
@@ -64,21 +71,34 @@ const Footer = () => {
   return (
     <FooterContainer>
       <Container maxWidth="lg">
-        <Box display="flex" alignItems="center" justifyContent="center" width="100%" flexWrap="wrap">
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          width="100%"
+          flexWrap="wrap"
+        >
           {/* Logo */}
-          <Box sx={{ display: "flex", alignItems: "center", height: "100px", justifyContent: "center" }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              height: "100px",
+              justifyContent: "center",
+            }}
+          >
             <img src={Logo2} alt="Incloz Logo" style={{ height: "60px" }} />
           </Box>
 
           <VerticalDivider />
 
           {/* Content  */}
-          <Grid 
-            container 
-            spacing={4}  
+          <Grid
+            container
+            spacing={4}
             flex={1}
             alignItems="flex-start"
-            justifyContent="space-between" 
+            justifyContent="space-between"
           >
             {/* Incloz Section */}
             <Grid item xs={12} sm={4}>
@@ -100,8 +120,12 @@ const Footer = () => {
                 <FooterTitle>Conditions</FooterTitle>
                 <Box display="flex" flexDirection="column">
                   <FooterLink href="#">Mentions légales</FooterLink>
-                  <FooterLink href="#">Conditions générales d&apos;utilisation</FooterLink>
-                  <FooterLink href="#">Conditions générales de vente</FooterLink>
+                  <FooterLink href="#">
+                    Conditions générales d&apos;utilisation
+                  </FooterLink>
+                  <FooterLink href="#">
+                    Conditions générales de vente
+                  </FooterLink>
                   <FooterLink href="#">Politique de confidentialité</FooterLink>
                 </Box>
               </Box>
@@ -116,12 +140,14 @@ const Footer = () => {
                   <FooterLink href="#">Livraison et Expédition</FooterLink>
                   <FooterLink href="#">Retours et remboursement</FooterLink>
 
-                  <Box mt={3}>  
+                  <Box mt={3}>
                     <FooterTitle>Nous contacter</FooterTitle>
-                    <NewsletterLink href="#">S&apos;abonner à la newsletter</NewsletterLink>
+                    <NewsletterLink href="#">
+                      S&apos;abonner à la newsletter
+                    </NewsletterLink>
                   </Box>
 
-                  <Box mt={2} display="flex" gap={1.5}> 
+                  <Box mt={2} display="flex" gap={1.5}>
                     <IconButton
                       aria-label="Instagram"
                       sx={{
