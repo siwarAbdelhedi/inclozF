@@ -3,127 +3,161 @@ import { styled } from "@mui/material/styles";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import Logo2 from "../assets/logo2.png";
 
 const FooterContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: "#FFF6EB",
-  padding: theme.spacing(6, 2), // Adaptable
+  backgroundColor: "#FFE5CF",
+  padding: theme.spacing(6, 2),
   fontFamily: "Decalotype, sans-serif",
+  minHeight: "300px",
+  display: "flex",
+  alignItems: "flex-start",
   [theme.breakpoints.down("sm")]: {
     padding: theme.spacing(4, 2),
   },
 }));
 
-const FooterTitle = styled(Typography)(({ theme }) => ({
-  fontWeight: "bold",
-  marginBottom: theme.spacing(2),
-  color: "#14235E",
-  fontFamily: "Decalotype, sans-serif",
-  textAlign: "center", // Alignement sur petit écran
+const VerticalDivider = styled(Box)(({ theme }) => ({
+  width: "1px",
+  backgroundColor: "#14235E",
+  height: "180px",
+  margin: "0 60px",
+  opacity: 0.4,
+  alignSelf: "center",
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
 }));
 
-const FooterLink = styled(Link)(({ theme }) => ({
+const FooterTitle = styled(Typography)(() => ({
+  fontWeight: "600",
+  marginBottom: "16px", 
   color: "#14235E",
-  textDecoration: "none",
   fontFamily: "Decalotype, sans-serif",
+  fontSize: "1rem",
+}));
+
+const FooterLink = styled(Link)(() => ({
+  color: "#232A45",
+  textDecoration: "none",
+  fontFamily: "Poppins, sans-serif",
+  fontSize: "0.875rem",
+  lineHeight: "2", 
+  display: "block",
   "&:hover": {
-    color: "#FD4802",
+    color: "#FD5C35",
+  },
+}));
+
+const NewsletterLink = styled(Link)(() => ({
+  color: "#FD5C35",
+  fontWeight: "bold",
+  textDecoration: "none",
+  fontFamily: "Poppins, sans-serif",
+  fontSize: "0.875rem",
+  "&:hover": {
     textDecoration: "underline",
   },
-  textAlign: "center", // Alignement sur petit écran
-}));
-
-const NewsletterButton = styled("button")(({ theme }) => ({
-  backgroundColor: "#FD4802",
-  color: "#FFF6EB",
-  border: "none",
-  padding: theme.spacing(1, 2),
-  cursor: "pointer",
-  fontFamily: "Decalotype, sans-serif",
-  "&:hover": {
-    backgroundColor: "#14235E",
-  },
-  display: "block",
-  margin: "10px auto", // Centrer le bouton
 }));
 
 const Footer = () => {
   return (
     <FooterContainer>
-      <Container maxWidth="xl">
-        <Grid container spacing={4} justifyContent="center">
-          {/* Colonne 1: Logo */}
-          <Grid item xs={12} sm={6} md={3} textAlign="center">
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{
-                fontWeight: "bold",
-                color: "#FD4802",
-                fontFamily: "Decalotype, sans-serif",
-              }}
-            >
-              INCLOZ
-            </Typography>
+      <Container maxWidth="lg">
+        <Box display="flex" alignItems="center" justifyContent="center" width="100%" flexWrap="wrap">
+          {/* Logo */}
+          <Box sx={{ display: "flex", alignItems: "center", height: "100px", justifyContent: "center" }}>
+            <img src={Logo2} alt="Incloz Logo" style={{ height: "60px" }} />
+          </Box>
+
+          <VerticalDivider />
+
+          {/* Content  */}
+          <Grid 
+            container 
+            spacing={4}  
+            flex={1}
+            alignItems="flex-start"
+            justifyContent="space-between" 
+          >
+            {/* Incloz Section */}
+            <Grid item xs={12} sm={4}>
+              <Box>
+                <FooterTitle>Incloz</FooterTitle>
+                <Box display="flex" flexDirection="column">
+                  <FooterLink href="#">Notre histoire</FooterLink>
+                  <FooterLink href="#">Notre équipe</FooterLink>
+                  <FooterLink href="#">Nos partenaires</FooterLink>
+                  <FooterLink href="#">La boutique</FooterLink>
+                  <FooterLink href="#">Notre blog</FooterLink>
+                </Box>
+              </Box>
+            </Grid>
+
+            {/* Conditions Section */}
+            <Grid item xs={12} sm={4}>
+              <Box>
+                <FooterTitle>Conditions</FooterTitle>
+                <Box display="flex" flexDirection="column">
+                  <FooterLink href="#">Mentions légales</FooterLink>
+                  <FooterLink href="#">Conditions générales d&apos;utilisation</FooterLink>
+                  <FooterLink href="#">Conditions générales de vente</FooterLink>
+                  <FooterLink href="#">Politique de confidentialité</FooterLink>
+                </Box>
+              </Box>
+            </Grid>
+
+            {/* Aide Section */}
+            <Grid item xs={12} sm={4}>
+              <Box>
+                <FooterTitle>Aide</FooterTitle>
+                <Box display="flex" flexDirection="column">
+                  <FooterLink href="#">Centre d&apos;aide</FooterLink>
+                  <FooterLink href="#">Livraison et Expédition</FooterLink>
+                  <FooterLink href="#">Retours et remboursement</FooterLink>
+
+                  <Box mt={3}>  
+                    <FooterTitle>Nous contacter</FooterTitle>
+                    <NewsletterLink href="#">S&apos;abonner à la newsletter</NewsletterLink>
+                  </Box>
+
+                  <Box mt={2} display="flex" gap={1.5}> 
+                    <IconButton
+                      aria-label="Instagram"
+                      sx={{
+                        color: "#14235E",
+                        padding: 0,
+                        "&:hover": { color: "#FD5C35" },
+                      }}
+                    >
+                      <InstagramIcon />
+                    </IconButton>
+                    <IconButton
+                      aria-label="Facebook"
+                      sx={{
+                        color: "#14235E",
+                        padding: 0,
+                        "&:hover": { color: "#FD5C35" },
+                      }}
+                    >
+                      <FacebookIcon />
+                    </IconButton>
+                    <IconButton
+                      aria-label="LinkedIn"
+                      sx={{
+                        color: "#14235E",
+                        padding: 0,
+                        "&:hover": { color: "#FD5C35" },
+                      }}
+                    >
+                      <LinkedInIcon />
+                    </IconButton>
+                  </Box>
+                </Box>
+              </Box>
+            </Grid>
           </Grid>
-
-          {/* Colonne 2: Incloz */}
-          <Grid item xs={12} sm={6} md={3}>
-            <FooterTitle variant="h6">Incloz</FooterTitle>
-            <Box display="flex" flexDirection="column" alignItems={{ xs: "center", md: "flex-start" }}>
-              <FooterLink href="#">Notre histoire</FooterLink>
-              <FooterLink href="#">Notre équipe</FooterLink>
-              <FooterLink href="#">Nos partenaires</FooterLink>
-              <FooterLink href="#">La boutique</FooterLink>
-              <FooterLink href="#">Notre blog</FooterLink>
-            </Box>
-          </Grid>
-
-          {/* Colonne 3: Conditions */}
-          <Grid item xs={12} sm={6} md={3}>
-            <FooterTitle variant="h6">Conditions</FooterTitle>
-            <Box display="flex" flexDirection="column" alignItems={{ xs: "center", md: "flex-start" }}>
-              <FooterLink href="#">Mentions légales</FooterLink>
-              <FooterLink href="#">Conditions générales d&apos;utilisation</FooterLink>
-              <FooterLink href="#">Conditions générales de vente</FooterLink>
-              <FooterLink href="#">Politique de confidentialité</FooterLink>
-            </Box>
-          </Grid>
-
-          {/* Colonne 4: Aide et réseaux sociaux */}
-          <Grid item xs={12} sm={6} md={3}>
-            <FooterTitle variant="h6">Aide</FooterTitle>
-            <Box display="flex" flexDirection="column" alignItems={{ xs: "center", md: "flex-start" }}>
-              <FooterLink href="#">Centre d&apos;aide</FooterLink>
-              <FooterLink href="#">Livraison et Expédition</FooterLink>
-              <FooterLink href="#">Retours et remboursement</FooterLink>
-            </Box>
-
-            <Box mt={2}>
-              <Typography
-                variant="subtitle1"
-                fontWeight="bold"
-                color="#14235E"
-                fontFamily="Decalotype, sans-serif"
-                textAlign="center"
-              >
-                Nous contacter
-              </Typography>
-              <NewsletterButton>S&apos;abonner à la newsletter</NewsletterButton>
-            </Box>
-
-            <Box mt={2} display="flex" justifyContent="center" gap={1}>
-              <IconButton aria-label="Instagram" sx={{ color: "#14235E" }}>
-                <InstagramIcon />
-              </IconButton>
-              <IconButton aria-label="Facebook" sx={{ color: "#14235E" }}>
-                <FacebookIcon />
-              </IconButton>
-              <IconButton aria-label="LinkedIn" sx={{ color: "#14235E" }}>
-                <LinkedInIcon />
-              </IconButton>
-            </Box>
-          </Grid>
-        </Grid>
+        </Box>
       </Container>
     </FooterContainer>
   );

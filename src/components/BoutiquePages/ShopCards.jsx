@@ -25,9 +25,9 @@
 //   display: "flex",
 //   justifyContent: "center",
 //   alignItems: "center",
-//   height: "180px", 
+//   height: "180px",
 //   width: "100%",
-//   marginBottom: "0", 
+//   marginBottom: "0",
 // });
 
 // const AddButton = styled(Button)({
@@ -93,7 +93,7 @@
 //       >
 //         Notre boutique
 //       </Typography>
-      
+
 //       <Grid container spacing={4} maxWidth="1200px" margin="0 auto">
 //         {items.map((item, index) => (
 //           <Grid item xs={12} sm={6} md={3} key={index}>
@@ -105,18 +105,18 @@
 //                   alt={item.title}
 //                   sx={{
 //                     width: "auto",
-//                     height: "70%", 
+//                     height: "70%",
 //                     objectFit: "contain",
-//                     padding: "20px", 
+//                     padding: "20px",
 //                   }}
 //                 />
 //               </ImageContainer>
-//               <CardContent 
-//                 sx={{ 
-//                   pt: 3, 
-//                   pb: 4, 
+//               <CardContent
+//                 sx={{
+//                   pt: 3,
+//                   pb: 4,
 //                   textAlign: "center",
-//                   px: 2, 
+//                   px: 2,
 //                   backgroundColor: "white",
 //                   borderBottomLeftRadius: "10px",
 //                   borderBottomRightRadius: "10px",
@@ -181,8 +181,15 @@
 
 // export default ShopCards;
 
-
-import { Card, CardContent, CardMedia, Button, Typography, Grid, Box } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Button,
+  Typography,
+  Grid,
+  Box,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import tShirt from "../../assets/tshirt.png";
@@ -190,7 +197,7 @@ import Jogging from "../../assets/jogging.png";
 import Short from "../../assets/short.png";
 import Veste from "../../assets/veste.png";
 
-// ✅ Card Styles
+// Card Styles
 const StyledCard = styled(Card)(({ theme }) => ({
   backgroundColor: "white",
   borderRadius: "10px",
@@ -201,14 +208,14 @@ const StyledCard = styled(Card)(({ theme }) => ({
   overflow: "visible",
   position: "relative",
   width: "100%",
-  maxWidth: "250px", // ✅ Reduce size on mobile
-  margin: "0 auto",  // ✅ Center cards on mobile
+  maxWidth: "250px",
+  margin: "0 auto",
   [theme.breakpoints.down("sm")]: {
-    maxWidth: "200px", // ✅ Even smaller on very small screens
+    maxWidth: "200px",
   },
 }));
 
-// ✅ Image Section
+// Image Section
 const ImageContainer = styled(Box)(({ theme }) => ({
   backgroundColor: "#FD5C35",
   borderTopLeftRadius: "10px",
@@ -219,12 +226,12 @@ const ImageContainer = styled(Box)(({ theme }) => ({
   height: "160px",
   width: "100%",
   [theme.breakpoints.down("sm")]: {
-    height: "140px", // ✅ Smaller for mobile
+    height: "140px",
   },
 }));
 
-// ✅ Add Button
-const AddButton = styled(Button)(({ theme }) => ({
+// Add Button
+const AddButton = styled(Button)(() => ({
   backgroundColor: "#FD4802",
   color: "#fff",
   width: "35px",
@@ -243,10 +250,30 @@ const AddButton = styled(Button)(({ theme }) => ({
 }));
 
 const items = [
-  { title: "T-SHIRT", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.", imgSrc: tShirt },
-  { title: "Jogging", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.", imgSrc: Jogging },
-  { title: "Short", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.", imgSrc: Short },
-  { title: "Veste", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.", imgSrc: Veste },
+  {
+    title: "T-SHIRT",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
+    imgSrc: tShirt,
+  },
+  {
+    title: "Jogging",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
+    imgSrc: Jogging,
+  },
+  {
+    title: "Short",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
+    imgSrc: Short,
+  },
+  {
+    title: "Veste",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
+    imgSrc: Veste,
+  },
 ];
 
 const ShopCards = () => {
@@ -257,8 +284,14 @@ const ShopCards = () => {
   };
 
   return (
-    <Box sx={{ backgroundColor: "#14235E", py: { xs: 4, md: 6 }, px: { xs: 2, md: 4 } }}>
-      {/* ✅ Title */}
+    <Box
+      sx={{
+        backgroundColor: "#14235E",
+        py: { xs: 4, md: 6 },
+        px: { xs: 2, md: 4 },
+      }}
+    >
+      {/* Title */}
       <Typography
         variant="h3"
         align="center"
@@ -272,12 +305,19 @@ const ShopCards = () => {
         Notre boutique
       </Typography>
 
-      {/* ✅ Responsive Grid */}
+      {/* Responsive Grid */}
       <Grid container spacing={4} justifyContent="center">
         {items.map((item, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index} sx={{ display: "flex", justifyContent: "center" }}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={3}
+            key={index}
+            sx={{ display: "flex", justifyContent: "center" }}
+          >
             <StyledCard>
-              {/* ✅ Image Section */}
+              {/* Image Section */}
               <ImageContainer>
                 <CardMedia
                   component="img"
@@ -292,7 +332,7 @@ const ShopCards = () => {
                 />
               </ImageContainer>
 
-              {/* ✅ Text Content */}
+              {/* Text Content */}
               <CardContent
                 sx={{
                   pt: 3,
@@ -304,14 +344,30 @@ const ShopCards = () => {
                   borderBottomRightRadius: "10px",
                 }}
               >
-                <Typography variant="h6" sx={{ color: "#14235E", fontWeight: "bold", mb: 1, fontSize: { xs: "1rem", md: "1.1rem" } }}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "#14235E",
+                    fontWeight: "bold",
+                    mb: 1,
+                    fontSize: { xs: "1rem", md: "1.1rem" },
+                  }}
+                >
                   {item.title}
                 </Typography>
-                <Typography variant="body2" sx={{ color: "#14235E", opacity: 0.8, fontSize: "0.85rem", lineHeight: 1.5 }}>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#14235E",
+                    opacity: 0.8,
+                    fontSize: "0.85rem",
+                    lineHeight: 1.5,
+                  }}
+                >
                   {item.description}
                 </Typography>
 
-                {/* ✅ Add to Cart Button */}
+                {/* Add to Cart Button */}
                 <AddButton onClick={handleAddToCart} variant="contained">
                   +
                 </AddButton>
@@ -321,7 +377,7 @@ const ShopCards = () => {
         ))}
       </Grid>
 
-      {/* ✅ CTA Button */}
+      {/* CTA Button */}
       <Box sx={{ textAlign: "center", mt: { xs: 5, md: 6 } }}>
         <Button
           variant="contained"
