@@ -1,89 +1,109 @@
-import { Box, Typography, Grid, Button, Paper } from "@mui/material";
+import React from "react";
+import { Box, Typography, Paper, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-// Conteneur principal
 const StepsContainer = styled(Box)(() => ({
-  backgroundColor: "#FFE5CF",
+  backgroundColor: "#FFF6F0",
   padding: "50px 0",
   textAlign: "center",
+  position: "relative",
 }));
 
-// Style des cartes avec effet de superposition
+const StepWrapper = styled(Box)(() => ({
+  position: "relative",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+const StepBackgroundCard = styled(Paper)(({ color }) => ({
+  position: "absolute",
+  top: "12px",
+  left: "12px",
+  width: "100%",
+  height: "100%",
+  backgroundColor: color,
+  borderRadius: "15px",
+  transform: "rotate(6deg)",
+  zIndex: 0,
+}));
+
 const StepCard = styled(Paper)(() => ({
-  padding: "20px",
+  padding: "15px",
   borderRadius: "15px",
   textAlign: "center",
   position: "relative",
   boxShadow: "5px 5px 15px rgba(0,0,0,0.1)",
   backgroundColor: "white",
-  "&:nth-of-type(odd)": {
-    transform: "translateY(-15px)",
-  },
-  "&:nth-of-type(even)": {
-    transform: "translateY(15px)",
-  },
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  minWidth: "200px",
+  minHeight: "220px",
+  zIndex: 1,
 }));
 
-// Style du texte des étapes
+const HandDrawnPath = styled(Box)(({ top, left, width, height, rotation }) => ({
+  position: "absolute",
+  top: top,
+  left: left,
+  width: width,
+  height: height,
+  background: "none",
+  borderTop: "3px dashed #14235E",
+  borderRadius: "100px 100px 0 0",
+  transform: `rotate(${rotation})`,
+}));
+
 const StepNumber = styled(Typography)({
   color: "#FD5C35",
   fontWeight: "bold",
-  fontSize: "24px",
+  fontSize: "22px",
   fontFamily: "Decalotype, sans-serif",
 });
 
 const StepTitle = styled(Typography)({
   fontWeight: "bold",
-  fontSize: "18px",
-  fontFamily: "Decalotype, sans-serif",
-  color: "#14235E",
-});
-
-const StepDescription = styled(Typography)({
   fontSize: "16px",
   fontFamily: "Decalotype, sans-serif",
   color: "#14235E",
+  marginTop: "6px",
 });
 
-// Style du bouton "Remplir la fiche de renseignement"
+const StepDescription = styled(Typography)({
+  fontSize: "14px",
+  fontFamily: "Decalotype, sans-serif",
+  color: "#14235E",
+  marginTop: "4px",
+  textAlign: "center",
+});
+
 const StyledButton = styled(Button)(() => ({
   backgroundColor: "#14235E",
   color: "white",
   fontWeight: "bold",
-  fontSize: "18px",
+  fontSize: "16px",
   textTransform: "none",
-  padding: "12px 24px",
+  padding: "10px 22px",
   borderRadius: "30px",
+  marginTop: "20px",
   boxShadow: "3px 3px 10px rgba(0,0,0,0.2)",
   "&:hover": {
     backgroundColor: "#FD5C35",
   },
 }));
 
-// Données des étapes
 const steps = [
-  {
-    number: "01",
-    title: "Choix du vêtement",
-    description: "Parmi notre collection",
-  },
-  {
-    number: "02",
-    title: "Choix de l'adaptation",
-    description: "Parmi nos adaptations",
-  },
-  {
-    number: "03",
-    title: "Une demande plus précise ?",
-    description: "Faites votre demande de devis",
-  },
-  { number: "04", title: "Livraison", description: "On vous livre chez vous" },
+  { number: "01", title: "Choix du vêtement", description: "Parmi notre collection", color: "#FD5C35" },
+  { number: "02", title: "Choix de l'adaptation", description: "Parmi nos adaptations", color: "#FD7E50" },
+  { number: "03", title: "Une demande plus précise ?", description: "Faites votre demande de devis", color: "#14235E" },
+  { number: "04", title: "Livraison", description: "On vous livre chez vous", color: "#FD5C35" },
 ];
 
 const ProcessSteps = () => {
   return (
     <StepsContainer>
-      {/* Titre principal */}
       <Typography
         variant="h4"
         sx={{
@@ -95,21 +115,28 @@ const ProcessSteps = () => {
       >
         Comment ça marche ?
       </Typography>
-
-      {/* Grille des étapes */}
-      <Grid container spacing={4} justifyContent="center">
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "50px", flexWrap: "wrap", position: "relative" }}>
         {steps.map((step, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
-            <StepCard elevation={3}>
+          <StepWrapper key={index}>
+            {index !== steps.length - 1 && (
+              <HandDrawnPath
+                top="50%"
+                left="100%"
+                width="100px"
+                height="50px"
+                rotation={index % 2 === 0 ? "15deg" : "-15deg"}
+              />
+            )}
+            <StepBackgroundCard color={step.color} />
+            <StepCard>
               <StepNumber>{step.number}</StepNumber>
               <StepTitle>{step.title}</StepTitle>
               <StepDescription>{step.description}</StepDescription>
             </StepCard>
-          </Grid>
+          </StepWrapper>
         ))}
-      </Grid>
+      </Box>
 
-      {/* Texte sous les étapes */}
       <Typography
         variant="h5"
         sx={{
@@ -132,25 +159,27 @@ const ProcessSteps = () => {
         Incloz vous fait un devis*
       </Typography>
 
-      {/* Bouton bien stylisé */}
-      <StyledButton sx={{ mt: 3 }}>
+      <StyledButton>
         Remplir la fiche de renseignement
       </StyledButton>
 
+
       {/* Texte en bas */}
       <Typography
-        variant="h5"
+        variant="h6"
         sx={{
-          color: "#14235E",
+           color: "#14235E",
           fontFamily: "Decalotype, sans-serif",
-          fontStyle: "italic",
+           fontStyle: "italic",
           mt: 2,
           textAlign: "right",
-          marginRight: 20
+         marginRight: 2
         }}
       >
-        *Réponse sous 48H
+       *Réponse sous 48H
       </Typography>
+
+
     </StepsContainer>
   );
 };

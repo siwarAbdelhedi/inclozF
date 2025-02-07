@@ -1,6 +1,7 @@
 import { Box, Typography, Button, Container, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import IMG from "../../assets/paralampique.jpg"
 
 const HeroContainer = styled(Box)(({ theme }) => ({
   backgroundColor: '#FFF',
@@ -83,7 +84,7 @@ const Hero = () => {
                 boxShadow: 3,
               }}
               alt="Paralympic athlete playing tennis"
-              src="./assets/tennisFauteuil.PNG" 
+              src={IMG} 
             />
           </Grid>
         </Grid>
