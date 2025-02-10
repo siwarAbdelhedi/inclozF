@@ -1,190 +1,115 @@
-import { TextField, Button, Typography, Box } from "@mui/material";
+import { Box, Typography, TextField, Button, Grid } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import EmailIcon from "@mui/icons-material/Email";
+import PhoneIcon from "@mui/icons-material/Phone";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+
+const ContactContainer = styled(Box)(({ theme }) => ({
+  backgroundColor: "white",
+  padding: "40px",
+  width: "100%",
+  minHeight: "auto",
+  marginTop: "-10px",
+  display: "flex",
+  justifyContent: "left", 
+  alignItems: "flex-start", 
+  [theme.breakpoints.down("sm")]: {
+    padding: "20px",
+    flexDirection: "column",
+  },
+}));
+
+const StyledTextField = styled(TextField)(() => ({
+  marginBottom: "15px",
+  "& .MuiInputBase-root": {
+    borderRadius: "20px",
+    backgroundColor: "white",
+  },
+}));
+
+const SendButton = styled(Button)(() => ({
+  backgroundColor: "#FD5C35",
+  color: "white",
+  padding: "10px 18px",
+  borderRadius: "17px",
+  fontSize: "16px",
+  fontWeight: "bold",
+  textTransform: "none",
+  width: "50%",
+  display: "block",
+  "&:hover": {
+    backgroundColor: "#E44A26",
+  },
+}));
 
 const ContactForm = () => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: { xs: "column", md: "row" },
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding:{ xs: "1rem", md: "2rem" },
-        backgroundColor: "#FFFF",
-      }}
-    >
-      {/* Left: Form Section */}
-      <Box
-        component="form"
-        sx={{
-          width: "80%",
-          maxWidth: { xs: "100%", md: "500px" },
-          "& .MuiTextField-root": { marginBottom: "1rem" },
-          fontFamily: "'Decalotype', sans-serif",
-        }}
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log("Form submitted!");
-        }}
+    <ContactContainer>
+      <Grid
+        container
+        spacing={4}
+        alignItems="flex-start" 
+        justifyContent="space-between" 
+        maxWidth="1200px"
       >
-        <Typography
-          variant="h5"
-          gutterBottom
+        {/* Left Side: Form */}
+        <Grid 
+          item xs={12} md={7} 
           sx={{
-            color: "#000000",
-            fontWeight: "400",
-            fontFamily: "'Poppins', sans-serif",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start", 
+            textAlign: "left", 
+            paddingLeft: "0px", 
           }}
         >
-          Votre nom
-        </Typography>
-        <TextField
-          label="Nom"
-          variant="outlined"
-          fullWidth
-          required
-          InputLabelProps={{
-            sx: {
-              fontFamily: "'Poppins', sans-serif",
-              color: "#FD5C35",
-            },
-          }}
-        />
+          <StyledTextField fullWidth label="Votre nom" variant="outlined" />
+          <StyledTextField fullWidth label="Votre prénom" variant="outlined" />
+          <StyledTextField fullWidth label="Le sujet" variant="outlined" />
+          <StyledTextField fullWidth label="Votre message" variant="outlined" multiline rows={4} />
+          <SendButton>Envoyez un message</SendButton>
+        </Grid>
 
-        <Typography
-          variant="h5"
-          gutterBottom
+        {/* Right Side: Contact Details  */}
+        <Grid 
+          item xs={12} md={5} 
           sx={{
-            color: "#000000",
-            fontWeight: "400",
-            fontFamily: "'Poppins', sans-serif",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start", 
+            alignItems: "flex-start", 
+            height: "100%", 
           }}
         >
-          Votre Prénom
-        </Typography>
+          <Typography variant="h4" color="#FD5C35" fontWeight="bold" gutterBottom>
+            Contactez-nous
+          </Typography>
+          <Typography variant="body1" marginBottom={2}>
+            Adaptez vos vêtements à votre vie !
+          </Typography>
+          <Typography variant="body2" color="textSecondary" marginBottom={2}>
+            Chez Incloz on s’adapte à votre mobilité et à <br></br>vos envies. 
+            Pour toute demande de devis ou<br></br>
+            d’informations complémentaires,contactez <br></br>notre équipe !
+          </Typography>
 
-        <TextField
-          label="Prénom"
-          variant="outlined"
-          fullWidth
-          required
-          InputLabelProps={{
-            sx: {
-              fontFamily: "'Poppins', sans-serif",
-              color: "#FD5C35",
-            },
-          }}
-        />
-
-        <Typography
-          variant="h5"
-          gutterBottom
-          sx={{
-            color: "#000000",
-            fontWeight: "400",
-            fontFamily: "'Poppins', sans-serif",
-          }}
-        >
-          Votre Sujet
-        </Typography>
-        <TextField
-          label="Sujet"
-          variant="outlined"
-          fullWidth
-          InputLabelProps={{
-            sx: {
-              fontFamily: "'Poppins', sans-serif",
-              color: "#FD5C35",
-            },
-          }}
-        />
-
-        <Typography
-          variant="h5"
-          gutterBottom
-          sx={{
-            color: "#000000",
-            fontWeight: "400",
-            fontFamily: "'Poppins', sans-serif",
-          }}
-        >
-          Votre message
-        </Typography>
-        <TextField
-          label="Votre message"
-          variant="outlined"
-          multiline
-          rows={4}
-          fullWidth
-          required
-          InputLabelProps={{
-            sx: {
-              fontFamily: "'Poppins', sans-serif",
-              color: "#FD5C35",
-            },
-          }}
-        />
-
-        <Button
-          type="submit"
-          variant="contained"
-          Width
-          sx={{
-            backgroundColor: "#FD4802",
-            color: "FFFFFF",
-            fontWeight: "bold",
-            fontFamily: "'Poppins', sans-serif",
-            "&:hover": {
-              backgroundColor: "#FD5C35",
-            },
-          }}
-        >
-          Envoyez un message
-        </Button>
-      </Box>
-
-      {/* Right: Contact Information Section */}
-      <Box
-        sx={{
-          maxWidth: { xs: "100%", md: "400px" }, 
-          textAlign: { xs: "center", md: "left" },
-          marginTop: { xs: "2rem", md: "0" },
-          fontFamily: "'Decalotype', sans-serif",
-          color: "#000000",
-        }}
-      >
-        <Typography
-          variant="h5"
-          gutterBottom
-          sx={{
-            color: "#FD4802",
-            fontWeight: "Regular",
-            fontFamily: "'Poppins', sans-serif",
-          }}
-        >
-          Contactez-nous
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          Adaptez vos vêtements à votre vie !
-        </Typography>
-        <Typography variant="body2" gutterBottom>
-          Chez Incloz, on s’adapte à votre mobilité et à vos envies. Pour toute
-          demande de devis ou d’informations complémentaires, contactez notre
-          équipe !
-        </Typography>
-        <Box sx={{ display: "flex", alignItems: "center", my: 1 }}>
-          <span style={{ marginRight: "8px" }}>📍</span>
-          <Typography>40 rue du chemin vert, Paris 75011</Typography>
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "center", my: 1 }}>
-          <span style={{ marginRight: "8px" }}>📞</span>
-          <Typography>01.81.44.36.76</Typography>
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "center", my: 1 }}>
-          <span style={{ marginRight: "8px" }}>📧</span>
-          <Typography>incloz.fr@gmail.com</Typography>
-        </Box>
-      </Box>
-    </Box>
+          <Box display="flex" alignItems="center" marginBottom={1}>
+            <LocationOnIcon sx={{ color: "#FD5C35", marginRight: "8px" }} />
+            <Typography variant="body2">40 rue du chemin vert, Paris 75011</Typography>
+          </Box>
+          <Box display="flex" alignItems="center" marginBottom={1}>
+            <PhoneIcon sx={{ color: "#FD5C35", marginRight: "8px" }} />
+            <Typography variant="body2">01.81.44.36.76</Typography>
+          </Box>
+          <Box display="flex" alignItems="center">
+            <EmailIcon sx={{ color: "#FD5C35", marginRight: "8px" }} />
+            <Typography variant="body2" sx={{ textDecoration: "underline", cursor: "pointer" }}>
+              incloz.fr@gmail.com
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
+    </ContactContainer>
   );
 };
 
