@@ -1,4 +1,5 @@
-import { Card, CardContent, CardMedia, Button, Typography, Grid, Box, } from "@mui/material";
+import React from 'react';
+import { Card, CardContent, CardMedia, Button, Typography, Grid, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import tShirt from "../../assets/tshirt.png";
@@ -17,7 +18,6 @@ const StyledCard = styled(Card)({
   position: "relative",
 });
 
-// ImageContainer proprieties
 const ImageContainer = styled(Box)({
   backgroundColor: "#FD5C35",
   borderTopLeftRadius: "10px",
@@ -52,26 +52,22 @@ const AddButton = styled(Button)({
 const items = [
   {
     title: "T-SHIRT",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
     imgSrc: tShirt,
   },
   {
     title: "Jogging",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
     imgSrc: Jogging,
   },
   {
     title: "Short",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
     imgSrc: Short,
   },
   {
     title: "Veste",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
     imgSrc: Veste,
   },
 ];
@@ -84,23 +80,42 @@ const ShopCards = () => {
   };
 
   return (
-    <Box sx={{ backgroundColor: "#14235E", py: 6, px: 2 }}>
+    <Box 
+      sx={{ 
+        backgroundColor: "#14235E", 
+        py: 6, 
+        px: 2,
+        minHeight: '100vh', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        justifyContent: 'center', 
+        alignItems: 'center' 
+      }}
+    >
       <Typography
         variant="h3"
         align="center"
         sx={{
           color: "#FFE5CF",
           marginBottom: 6,
-          fontSize: { xs: "2rem", md: "2.5rem" },
+          fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
           fontWeight: "bold",
         }}
       >
         Notre boutique
       </Typography>
 
-      <Grid container spacing={4} maxWidth="1200px" margin="0 auto">
+      <Grid 
+        container 
+        spacing={4} 
+        sx={{
+          width: '100%',
+          margin: '0 auto',
+          maxWidth: { xs: '100%', sm: '90%', md: '1200px' }
+        }}
+      >
         {items.map((item, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
+          <Grid item xs={12} sm={6} md={3} lg={3} xl={3} key={index}>
             <StyledCard>
               <ImageContainer>
                 <CardMedia
