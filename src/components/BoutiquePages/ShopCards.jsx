@@ -1,4 +1,4 @@
-import { Card, CardContent, CardMedia, Button, Typography, Grid, Box } from "@mui/material";
+import { Card, CardContent, CardMedia, Button, Typography, Grid, Box, } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import tShirt from "../../assets/tshirt.png";
@@ -17,7 +17,7 @@ const StyledCard = styled(Card)({
   position: "relative",
 });
 
-// Updated ImageContainer proprieties
+// ImageContainer proprieties
 const ImageContainer = styled(Box)({
   backgroundColor: "#FD5C35",
   borderTopLeftRadius: "10px",
@@ -52,22 +52,26 @@ const AddButton = styled(Button)({
 const items = [
   {
     title: "T-SHIRT",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
     imgSrc: tShirt,
   },
   {
     title: "Jogging",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
     imgSrc: Jogging,
   },
   {
     title: "Short",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
     imgSrc: Short,
   },
   {
     title: "Veste",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
     imgSrc: Veste,
   },
 ];
@@ -144,10 +148,7 @@ const ShopCards = () => {
                 >
                   {item.description}
                 </Typography>
-                <AddButton
-                  onClick={handleAddToCart}
-                  variant="contained"
-                >
+                <AddButton onClick={handleAddToCart} variant="contained">
                   +
                 </AddButton>
               </CardContent>
@@ -180,4 +181,3 @@ const ShopCards = () => {
 };
 
 export default ShopCards;
-

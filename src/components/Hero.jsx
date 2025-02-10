@@ -12,7 +12,6 @@ const HeroContainer = styled(Box)(() => ({
   overflow: "hidden",
 }));
 
-// Limite la largeur pour bien gérer les écrans larges
 const HeroContent = styled(Box)(() => ({
   width: "100%",
   maxWidth: "1600px",
@@ -28,7 +27,7 @@ const HeroContent = styled(Box)(() => ({
   },
 }));
 
-// Texte bien aligné à gauche
+
 const TextContainer = styled(Box)(() => ({
   maxWidth: "600px",
   "@media (max-width: 960px)": {
@@ -36,7 +35,6 @@ const TextContainer = styled(Box)(() => ({
   },
 }));
 
-// Image alignée à droite
 const HeroImage = styled("img")(() => ({
   width: "auto",
   maxWidth: "500px",
@@ -49,7 +47,7 @@ const HeroImage = styled("img")(() => ({
   },
 }));
 
-// Bouton stylisé
+
 const StyledButton = styled(Button)(() => ({
   backgroundColor: "white",
   color: "#232A45",
