@@ -84,7 +84,7 @@ const FounderStory = () => {
           <Typography variant="h5" fontWeight="bold" color="#14235E" sx={{ fontFamily: "Decalotype, sans-serif" }}>
             Vous souhaitez une adaptation sur mesure ?
           </Typography>
-          <Typography variant="body1" sx={{ fontStyle: "italic", mb: 2, fontFamily: "Decalotype, sans-serif" }}>
+          <Typography variant="body1" sx={{ color: "#14235E", fontStyle: "italic", mb: 2, fontFamily: "Decalotype, sans-serif" }}>
             Incloz vous fait un devis*
           </Typography>
           <StyledButton>Remplir la fiche de renseignement</StyledButton>

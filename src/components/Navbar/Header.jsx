@@ -14,8 +14,8 @@ import Logo from "../../assets/logo.png";
 
 const pages = [
   { label: "La boutique", path: "/boutique" },
-  { label: "Blog", path: "/blog" },
   { label: "Qui sommes nous ?", path: "/about" },
+  { label: "Blog", path: "/blog" },
   { label: "Contact", path: "/ContactForm" },
 ];
 
