@@ -7,6 +7,7 @@ import BoutiquePage from "./pages/BoutiquePage";
 import Panier from "./components/BoutiquePages/Panier";
 import ContactForm from "./components/Cantact/ContactForm";
 import Blog from "./components/Blog/Blog";
+import HistoryPage from "./pages/HistoryPage";
 
 const theme = createTheme({
   palette: {
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/panier" element={<Panier />} />
           <Route path="/ContactForm" element={<ContactForm />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/about" element={<HistoryPage />}  />
         </Routes>
         <Footer />
       </Router>
