@@ -3,35 +3,39 @@ import { styled } from "@mui/material/styles";
 import FounderImage from "../../assets/founder.jpg"; 
 
 const StoryContainer = styled(Box)(() => ({
-  backgroundColor: "#FFF6EB",
+  backgroundColor: "#FFE5CF", 
   padding: "60px 20px",
   display: "flex",
   justifyContent: "center",
+  fontFamily: "Decalotype, sans-serif",
 }));
 
 const StyledText = styled(Typography)(({ theme }) => ({
-  color: "#14235E",
+  color: "#232A45", 
   fontSize: "18px",
   lineHeight: "1.6",
   maxWidth: "600px",
+  fontFamily: "Poppins, sans-serif",
   [theme.breakpoints.down("md")]: {
     textAlign: "center",
   },
 }));
 
 const HighlightedText = styled("span")(() => ({
-  color: "#FD5C35",
+  color: "#FD4802", 
   fontWeight: "bold",
 }));
 
 const StyledButton = styled(Button)(() => ({
-  backgroundColor: "#14235E",
+  backgroundColor: "#14235E", 
   color: "white",
   padding: "10px 20px",
   fontSize: "16px",
   fontWeight: "bold",
   borderRadius: "20px",
   marginTop: "30px",
+  fontFamily: "Decalotype, sans-serif",
+  boxShadow: "2px 2px 10px rgba(0,0,0,0.2)",
   "&:hover": {
     backgroundColor: "#0F1C4F",
   },
@@ -41,7 +45,6 @@ const FounderStory = () => {
   return (
     <StoryContainer>
       <Grid container spacing={4} alignItems="center" maxWidth="1200px">
-        {/* Left Section - Text */}
         <Grid item xs={12} md={6}>
           <StyledText>
             Chez Incloz, nous croyons que chacun mérite de se sentir{" "}
@@ -58,12 +61,11 @@ const FounderStory = () => {
             plus qu’une marque : c’est un engagement pour{" "}
             <HighlightedText>la dignité et l’indépendance de tous</HighlightedText>.
           </StyledText>
-          <Typography fontWeight="bold" sx={{ mt: 2 }}>
+          <Typography fontWeight="bold" sx={{ mt: 2, fontFamily: "Decalotype, sans-serif", color: "#14235E" }}>
             Marina Oliveira, Fondatrice d’Incloz
           </Typography>
         </Grid>
 
-        {/* Right Section - Founder Image */}
         <Grid item xs={12} md={6} sx={{ textAlign: "center" }}>
           <Box
             component="img"
@@ -78,12 +80,11 @@ const FounderStory = () => {
           />
         </Grid>
 
-        {/* CTA Button - Full width under text */}
         <Grid item xs={12} textAlign="center">
-          <Typography variant="h5" fontWeight="bold" color="#14235E">
+          <Typography variant="h5" fontWeight="bold" color="#14235E" sx={{ fontFamily: "Decalotype, sans-serif" }}>
             Vous souhaitez une adaptation sur mesure ?
           </Typography>
-          <Typography variant="body1" sx={{ fontStyle: "italic", mb: 2 }}>
+          <Typography variant="body1" sx={{ fontStyle: "italic", mb: 2, fontFamily: "Decalotype, sans-serif" }}>
             Incloz vous fait un devis*
           </Typography>
           <StyledButton>Remplir la fiche de renseignement</StyledButton>
