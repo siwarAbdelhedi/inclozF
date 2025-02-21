@@ -1,6 +1,6 @@
-import Hero from "../../components/Hero";
-import ProcessSteps from "../../components/BoutiquePages/ProcessSteps";
-import ShopCards from "../../components/BoutiquePages/ShopCards";
+import Hero from "../Hero";
+import ProcessSteps from "../BoutiquePages/ProcessSteps";
+import ShopCards from "../BoutiquePages/ShopCards";
 const HomeScreen = () => {
   return (
     <div>

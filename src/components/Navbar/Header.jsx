@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 
 const pages = [
+  {label: "Accueil", path: "/home"},
   { label: "La boutique", path: "/boutique" },
   { label: "Qui sommes nous ?", path: "/about" },
   { label: "Blog", path: "/blog" },
@@ -126,7 +127,7 @@ function Header() {
           {/* Logo */}
           <Box
             component={Link}
-            to="/"
+            to="/home"
             sx={{
               display: "flex",
               alignItems: "center",
