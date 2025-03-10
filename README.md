@@ -26,7 +26,6 @@ Ce projet est le **frontend** du site web Incloz, développé en **React.js avec
 
 ### **2️⃣ Cloner le projet**
 
-```bash
 git clone https://github.com/siwarAbdelhedi/inclozF.git
 cd inclozF
 
