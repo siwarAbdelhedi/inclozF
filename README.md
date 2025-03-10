@@ -2,11 +2,11 @@
 
 Incloz est une **marque spécialisée dans les vêtements de sport pour parathlètes**, avec un concept de **personnalisation** des produits en fonction des besoins spécifiques des clients.
 
-Ce projet est le **frontend** du site web Incloz, développé en **React.js avec Vite**, **Material-UI**, et stylisé pour correspondre à une maquette précise.
+Cette partie est la **frontend** du site web Incloz, développé en **React.js avec Vite**, **Material-UI**, et stylisé pour correspondre à une maquette précise.
 
 ---
 
-## 🚀 **Technologies utilisées**
+## 🚀 Technologies utilisées
 
 - **React.js** - Framework principal
 - **Vite** - Outil de bundling rapide
@@ -17,25 +17,31 @@ Ce projet est le **frontend** du site web Incloz, développé en **React.js avec
 
 ---
 
-## 📥 **Installation**
+## 📥 Installation
 
-### **1️⃣ Prérequis**
+### 1️⃣ Prérequis
+
+Assurez-vous d'avoir installé :
 
 - **Node.js** (v20 ou supérieur)
-- **npm** (ou `yarn`) installé
+- **npm** (ou `yarn`)
 
-### **2️⃣ Cloner le projet**
+### 2️⃣ Cloner le projet
 
 ```bash
 git clone https://github.com/siwarAbdelhedi/inclozF.git
 cd inclozF
+```
 
-### **3️⃣ Installer les dépendances **
+### 3️⃣ Installer les dépendances
 
+```bash
 npm install
+```
 
+### 4️⃣ Lancer le projet en mode développement
 
-### **▶️ Lancer le projet en mode développement **
-Une fois les dépendances installées, lance le projet avec :
-
+```bash
 npm run dev
+```
+
