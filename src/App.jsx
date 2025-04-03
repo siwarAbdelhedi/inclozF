@@ -8,6 +8,9 @@ import Panier from "./components/BoutiquePages/Panier";
 import ContactForm from "./components/Cantact/ContactForm";
 import Blog from "./components/Blog/Blog";
 import HistoryPage from "./pages/HistoryPage";
+import DashboardPage from "./pages/DashboardPage";
+import LoginForm from "./components/Auth/LoginForm";
+import RegisterForm from "./components/Auth/RegisterForm";
 
 const theme = createTheme({
   palette: {
@@ -31,6 +34,9 @@ const App = () => {
           <Route path="/ContactForm" element={<ContactForm />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/about" element={<HistoryPage />}  />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
         </Routes>
         <Footer />
       </Router>

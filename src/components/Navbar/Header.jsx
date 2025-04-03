@@ -121,6 +121,21 @@ function Header() {
                 </MenuItem>
               ))}
             </Menu>
+            {/* Burger Menu */}
+            <MenuItem onClick={handleCloseNavMenu}>
+  <Button
+    component={Link}
+    to="/login"
+    sx={{
+      color: "#14235E",
+      fontFamily: "Decalotype, sans-serif",
+      fontWeight: "bold",
+    }}
+  >
+    Se connecter
+  </Button>
+</MenuItem>
+
           </Box>
 
           {/* Logo */}
@@ -150,11 +165,17 @@ function Header() {
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <ConnectButton
             variant="contained"
+            component={Link}
+            to="/login"
             sx={{ display: { xs: "none", md: "block" } }}
           >
             Se connecter
           </ConnectButton>
-          <IconButton sx={{ color: "#14235E" }}>
+          <IconButton
+            component={Link}
+            to="/panier"
+            sx={{ color: "#14235E" }}
+          >
             <ShoppingCartIcon />
           </IconButton>
         </Box>
