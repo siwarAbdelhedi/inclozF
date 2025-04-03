@@ -14,7 +14,8 @@ const Panier = () => {
 
   const fetchCart = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/cart'); 
+      // const response = await fetch('http://localhost:5000/api/cart'); 
+      const response = await fetch('https://api.incloz.com/api/cart'); 
       const data = await response.json();
       setCartItems(data.products);
     } catch (error) {
@@ -30,7 +31,8 @@ const Panier = () => {
         handleRemove(productId, size);
       } else {
         try {
-          await fetch('http://localhost:5000/api/cart', {
+          // await fetch('http://localhost:5000/api/cart', {
+          await fetch('https://api.incloz.com/api/cart', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -48,7 +50,8 @@ const Panier = () => {
   const handleRemove = async (productId, size) => {
     try {
       // Remove the item from the backend cart
-      await fetch('http://localhost:5000/api/cart', {
+      // await fetch('http://localhost:5000/api/cart', {
+      await fetch('https://api.incloz.com/api/cart', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
