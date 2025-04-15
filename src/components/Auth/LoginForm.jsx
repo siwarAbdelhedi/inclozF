@@ -42,7 +42,7 @@ const LoginForm = () => {
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }));
+    }));0
   };
 
   const handleLogin = async (e) => {

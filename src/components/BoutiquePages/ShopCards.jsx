@@ -91,18 +91,30 @@ const ShopCards = () => {
         alignItems: 'center' 
       }}
     >
-      <Typography
-        variant="h3"
-        align="center"
-        sx={{
-          color: "#FFE5CF",
-          marginBottom: 6,
-          fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
-          fontWeight: "bold",
-        }}
-      >
-        Notre boutique
-      </Typography>
+<Typography
+  variant="h6"
+  sx={{
+    color: "#14235E",
+    fontWeight: "bold",
+    mb: 1,
+    fontSize: "1.1rem",
+    fontFamily: "Decalotype, sans-serif", // Utilisation de Decalotype Bold
+  }}
+>
+  {items.title}
+</Typography>
+<Typography
+  variant="body2"
+  sx={{
+    color: "#14235E",
+    opacity: 0.8,
+    fontSize: "0.875rem",
+    lineHeight: 1.5,
+    fontFamily: "Decalotype, sans-serif", // Utilisation de Decalotype Regular
+  }}
+>
+  {items.description}
+</Typography>
 
       <Grid 
         container 

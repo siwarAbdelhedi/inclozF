@@ -3,12 +3,29 @@ import { styled } from "@mui/material/styles";
 
 const HeroContainer = styled(Box)(() => ({
   backgroundColor: "#FD5C35", 
-  padding: "80px 20px",
+  padding: "40px 20px",
   textAlign: "center",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  minHeight: "0vh",
+  position: "relative",
   fontFamily: "Decalotype, sans-serif",
+}));
+
+const Wave = styled("div")(() => ({
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  width: "100%",
+  overflow: "hidden",
+  lineHeight: 0,
+}));
+
+const Svg = styled("svg")(() => ({
+  display: "block",
+  width: "100%",
+  height: "60px",
 }));
 
 const StyledButton = styled(Button)(() => ({
@@ -29,13 +46,20 @@ const StyledButton = styled(Button)(() => ({
 const HeroSection = () => {
   return (
     <HeroContainer>
-      <Typography variant="h4" fontWeight="bold" color="#232A45" sx={{ fontFamily: "Decalotype, sans-serif" }}>
+      <Typography variant="h4" fontWeight="bold" color="#232A45">
         Incloz, le style qui vous suit.
       </Typography>
-      <Typography variant="body1" color="#232A45" sx={{ mt: 1, fontStyle: "italic", fontFamily: "Decalotype, sans-serif" }}>
-        Nous mettons au cœur de nos design les <br></br> besoins et les désirs de chacun
+      <Typography variant="body1" color="#232A45" sx={{ mt: 1, fontStyle: "italic" }}>
+        Nous mettons au cœur de nos design les <br /> besoins et les désirs de chacun
       </Typography>
       <StyledButton>Je découvre Incloz</StyledButton>
+
+      {/* Wave SVG en bas */}
+      <Wave>
+        <Svg viewBox="0 0 500 150" preserveAspectRatio="none">
+          <path d="M0.00,49.98 C150.00,150.00 350.00,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style={{ fill: "#FFF7F0" }} />
+        </Svg>
+      </Wave>
     </HeroContainer>
   );
 };
