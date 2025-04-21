@@ -1,10 +1,16 @@
-import { Card, CardContent, CardMedia, Button, Typography, Grid, Box } from "@mui/material";
+import { useEffect, useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Button,
+  Typography,
+  Grid,
+  Box,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import tShirt from "../../assets/tshirt.png";
-import Jogging from "../../assets/jogging.png";
-import Short from "../../assets/short.png";
-import Veste from "../../assets/veste.png";
+import axios from "axios";
 
 const StyledCard = styled(Card)({
   backgroundColor: "white",
@@ -48,90 +54,55 @@ const AddButton = styled(Button)({
   },
 });
 
-const items = [
-  {
-    title: "T-SHIRT",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
-    imgSrc: tShirt,
-  },
-  {
-    title: "Jogging",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
-    imgSrc: Jogging,
-  },
-  {
-    title: "Short",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
-    imgSrc: Short,
-  },
-  {
-    title: "Veste",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.",
-    imgSrc: Veste,
-  },
-];
-
 const ShopCards = () => {
   const navigate = useNavigate();
+  const [items, setItems] = useState([]);
 
-  const handleAddToCart = () => {
-    navigate("/panier");
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:5000/api/products");
+        setItems(data);
+      } catch (err) {
+        console.error("Failed to load products", err);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  const handleAddToCart = (id) => {
+    navigate(`/product/${id}`);
   };
 
   return (
-    <Box 
-      sx={{ 
-        backgroundColor: "#14235E", 
-        py: 6, 
+    <Box
+      sx={{
+        backgroundColor: "#14235E",
+        py: 6,
         px: 2,
-        minHeight: '100vh', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        justifyContent: 'center', 
-        alignItems: 'center' 
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-<Typography
-  variant="h6"
-  sx={{
-    color: "#14235E",
-    fontWeight: "bold",
-    mb: 1,
-    fontSize: "1.1rem",
-    fontFamily: "Decalotype, sans-serif", // Utilisation de Decalotype Bold
-  }}
->
-  {items.title}
-</Typography>
-<Typography
-  variant="body2"
-  sx={{
-    color: "#14235E",
-    opacity: 0.8,
-    fontSize: "0.875rem",
-    lineHeight: 1.5,
-    fontFamily: "Decalotype, sans-serif", // Utilisation de Decalotype Regular
-  }}
->
-  {items.description}
-</Typography>
-
-      <Grid 
-        container 
-        spacing={4} 
+      <Grid
+        container
+        spacing={4}
         sx={{
-          width: '100%',
-          margin: '0 auto',
-          maxWidth: { xs: '100%', sm: '90%', md: '1200px' }
+          width: "100%",
+          margin: "0 auto",
+          maxWidth: { xs: "100%", sm: "90%", md: "1200px" },
         }}
       >
-        {items.map((item, index) => (
-          <Grid item xs={12} sm={6} md={3} lg={3} xl={3} key={index}>
+        {items.map((item) => (
+          <Grid item xs={12} sm={6} md={3} key={item._id}>
             <StyledCard>
               <ImageContainer>
                 <CardMedia
                   component="img"
-                  image={item.imgSrc}
+                  image={`http://localhost:5000/uploads/${item.image}`}
                   alt={item.title}
                   sx={{
                     width: "auto",
@@ -174,7 +145,10 @@ const ShopCards = () => {
                 >
                   {item.description}
                 </Typography>
-                <AddButton onClick={handleAddToCart} variant="contained">
+                <AddButton
+                  onClick={() => handleAddToCart(item._id)}
+                  variant="contained"
+                >
                   +
                 </AddButton>
               </CardContent>
@@ -182,26 +156,6 @@ const ShopCards = () => {
           </Grid>
         ))}
       </Grid>
-
-      <Box sx={{ textAlign: "center", mt: 6 }}>
-        <Button
-          variant="contained"
-          sx={{
-            backgroundColor: "#FFE5CF",
-            color: "#14235E",
-            borderRadius: "25px",
-            padding: "10px 30px",
-            textTransform: "none",
-            fontSize: "1rem",
-            fontWeight: "bold",
-            "&:hover": {
-              backgroundColor: "#ffd6b3",
-            },
-          }}
-        >
-          Je découvre la boutique
-        </Button>
-      </Box>
     </Box>
   );
 };
