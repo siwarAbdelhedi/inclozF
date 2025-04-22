@@ -49,7 +49,6 @@ const Panier = () => {
 
   const handleRemove = async (productId, size) => {
     try {
-      // Remove the item from the backend cart
       // await fetch('http://localhost:5000/api/cart', {
       await fetch('https://api.incloz.com/api/cart', {
         method: 'DELETE',
@@ -58,7 +57,7 @@ const Panier = () => {
         },
         body: JSON.stringify({ productId, size }),
       });
-      fetchCart(); // Refresh cart after delete
+      fetchCart(); 
     } catch (error) {
       console.error('Failed to remove item:', error);
     }
