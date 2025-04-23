@@ -92,7 +92,8 @@ const ShopCards = () => {
     >
       <Grid
         container
-        spacing={4}
+        spacing={3}
+        justifyContent="center"
         sx={{
           width: "100%",
           margin: "0 auto",
