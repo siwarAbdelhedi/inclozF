@@ -57,11 +57,14 @@ const AddButton = styled(Button)({
 const ShopCards = () => {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL;
+  const IMG_URL = import.meta.env.VITE_IMG_URL;
+
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5000/api/products");
+        const { data } = await axios.get(`${API_URL}/products`);
         setItems(data);
       } catch (err) {
         console.error("Failed to load products", err);
@@ -102,7 +105,7 @@ const ShopCards = () => {
               <ImageContainer>
                 <CardMedia
                   component="img"
-                  image={`http://localhost:5000/uploads/${item.image}`}
+                  image={`${IMG_URL}/${item.image}`}
                   alt={item.title}
                   sx={{
                     width: "auto",
