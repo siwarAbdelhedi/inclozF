@@ -1,129 +1,139 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Grid, Box, Typography, Button, IconButton, Divider } from '@mui/material';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { useState, useEffect } from "react";
+import {
+  Box,
+  Typography,
+  Grid,
+  IconButton,
+  Divider,
+  Button,
+} from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Panier = () => {
   const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchCart();
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartItems(storedCart);
   }, []);
 
-  const fetchCart = async () => {
-    try {
-      // const response = await fetch('http://localhost:5000/api/cart'); 
-      const response = await fetch('https://api.incloz.com/api/cart'); 
-      const data = await response.json();
-      setCartItems(data.products);
-    } catch (error) {
-      console.error('Failed to fetch cart:', error);
-    }
+  const updateCart = (items) => {
+    localStorage.setItem("cart", JSON.stringify(items));
+    setCartItems(items);
   };
 
-  const handleQuantityChange = async (productId, size, amount) => {
-    const item = cartItems.find(item => item.product._id === productId && item.size === size);
-    if (item) {
-      const newQuantity = item.quantity + amount;
-      if (newQuantity <= 0) {
-        handleRemove(productId, size);
-      } else {
-        try {
-          // await fetch('http://localhost:5000/api/cart', {
-          await fetch('https://api.incloz.com/api/cart', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ productId, quantity: amount, size }),
-          });
-          fetchCart();
-        } catch (error) {
-          console.error('Failed to update quantity:', error);
-        }
-      }
-    }
+  const handleQuantityChange = (productId, amount) => {
+    const updated = cartItems.map((item) =>
+      item.productId === productId
+        ? { ...item, quantity: Math.max(1, item.quantity + amount) }
+        : item
+    );
+    updateCart(updated);
   };
 
-  const handleRemove = async (productId, size) => {
-    try {
-      // await fetch('http://localhost:5000/api/cart', {
-      await fetch('https://api.incloz.com/api/cart', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ productId, size }),
-      });
-      fetchCart(); 
-    } catch (error) {
-      console.error('Failed to remove item:', error);
-    }
+  const handleRemove = (productId) => {
+    const updated = cartItems.filter((item) => item.productId !== productId);
+    updateCart(updated);
   };
 
-  const getTotal = () => {
-    return cartItems.reduce((total, item) => total + item.product.price * item.quantity, 0);
-  };
+  const getTotal = () =>
+    cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
-    <Box sx={{ padding: 4 }}>
-      <Button component={Link} to="/boutique" sx={{ color: '#14235E', mb: 2 }}>
-        Retourner à la boutique
+    <Box sx={{ p: 4 }}>
+      <Button component={Link} to="/boutique" sx={{ color: "#14235E", mb: 2 }}>
+        Retour à la boutique
       </Button>
 
       <Typography variant="h4" gutterBottom>
         Votre panier
       </Typography>
 
-      <Grid container spacing={2}>
-        {cartItems.map((item) => (
-          <Grid item xs={12} key={`${item.product._id}-${item.size}`}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Box component="img" src={item.product.image} alt={item.product.name} sx={{ width: 100, height: 100, mr: 2 }} />
-                <Box>
-                  <Typography variant="h6">{item.product.title}</Typography>
-                  <Typography variant="body2">Taille: {item.size}</Typography>
-                  <Typography variant="body1" sx={{ color: 'red' }}>
-                    {item.product.price}€ TTC
-                  </Typography>
+      {cartItems.length === 0 ? (
+        <Typography>Votre panier est vide</Typography>
+      ) : (
+        <Grid container spacing={2}>
+          {cartItems.map((item) => (
+            <Grid item xs={12} key={item.productId}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Box
+                    component="img"
+                    src={item.image}
+                    alt={item.title}
+                    sx={{ width: 100, height: 100, mr: 2 }}
+                  />
+                  <Box>
+                    <Typography variant="h6">{item.title}</Typography>
+                    <Typography variant="body2">
+                      Taille: {item.size}
+                    </Typography>
+                    <Typography variant="body2">
+                      Adaptation: {item.adaptation}
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: "red" }}>
+                      {item.price}€ TTC
+                    </Typography>
+                  </Box>
                 </Box>
-              </Box>
 
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <IconButton onClick={() => handleQuantityChange(item.product._id, item.size, -1)}>
-                  <RemoveIcon />
-                </IconButton>
-                <Typography>{item.quantity}</Typography>
-                <IconButton onClick={() => handleQuantityChange(item.product._id, item.size, 1)}>
-                  <AddIcon />
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <IconButton
+                    onClick={() => handleQuantityChange(item.productId, -1)}
+                  >
+                    <RemoveIcon />
+                  </IconButton>
+                  <Typography>{item.quantity}</Typography>
+                  <IconButton
+                    onClick={() => handleQuantityChange(item.productId, 1)}
+                  >
+                    <AddIcon />
+                  </IconButton>
+                </Box>
+
+                <IconButton onClick={() => handleRemove(item.productId)}>
+                  <DeleteIcon />
                 </IconButton>
               </Box>
+              <Divider sx={{ my: 2 }} />
+            </Grid>
+          ))}
 
-              <IconButton onClick={() => handleRemove(item.product._id, item.size)}>
-                <DeleteIcon />
-              </IconButton>
+          <Grid item xs={12} md={4} sx={{ ml: "auto" }}>
+            <Box sx={{ border: "1px solid #ddd", padding: 2 }}>
+              <Typography variant="h6" gutterBottom>
+                Récapitulatif de la commande
+              </Typography>
+              <Typography>
+                Total articles : {getTotal().toFixed(2)} €
+              </Typography>
+              <Typography>Frais de livraison : 3.99 €</Typography>
+              <Typography variant="h6">
+                Total : {(getTotal() + 3.99).toFixed(2)} €
+              </Typography>
+
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{ mt: 2 }}
+                onClick={() => navigate("/login")}
+              >
+                Se connecter pour payer
+              </Button>
             </Box>
-            <Divider sx={{ my: 2 }} />
           </Grid>
-        ))}
-
-        <Grid item xs={12} md={4} sx={{ ml: 'auto' }}>
-          <Box sx={{ border: '1px solid #ddd', padding: 2 }}>
-            <Typography variant="h6" gutterBottom>
-              Récapitulatif de la commande
-            </Typography>
-            <Typography variant="body1">Total des articles: {getTotal()}€</Typography>
-            <Typography variant="body1">Frais de livraison: 3.99€</Typography>
-            <Typography variant="h6">Total: {(getTotal() + 3.99).toFixed(2)}€</Typography>
-            <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
-              Passer au paiement
-            </Button>
-          </Box>
         </Grid>
-      </Grid>
+      )}
     </Box>
   );
 };
