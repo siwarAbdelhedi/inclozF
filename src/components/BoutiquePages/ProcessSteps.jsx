@@ -1,5 +1,7 @@
 import { Box, Typography, Paper, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
+
 
 const StepsContainer = styled(Box)(() => ({
   backgroundColor: "#FFF6F0",
@@ -158,24 +160,23 @@ const ProcessSteps = () => {
         Incloz vous fait un devis*
       </Typography>
 
-      <StyledButton>
+      <StyledButton component={Link} to="/custom-request">
         Remplir la fiche de renseignement
       </StyledButton>
-
 
       {/* Texte en bas */}
       <Typography
         variant="h6"
         sx={{
-           color: "#14235E",
+          color: "#14235E",
           fontFamily: "Decalotype, sans-serif",
-           fontStyle: "italic",
+          fontStyle: "italic",
           mt: 2,
           textAlign: "right",
-         marginRight: 2
+          marginRight: 2
         }}
       >
-       *Réponse sous 48H
+        *Réponse sous 48H
       </Typography>
 
 

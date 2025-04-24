@@ -1,9 +1,10 @@
 import { Box, Typography, Grid, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import FounderImage from "../../assets/founder.jpg"; 
+import FounderImage from "../../assets/founder.jpg";
+import { Link } from "react-router-dom";
 
 const StoryContainer = styled(Box)(() => ({
-  backgroundColor: "#FFE5CF", 
+  backgroundColor: "#FFE5CF",
   padding: "60px 20px",
   display: "flex",
   justifyContent: "center",
@@ -11,7 +12,7 @@ const StoryContainer = styled(Box)(() => ({
 }));
 
 const StyledText = styled(Typography)(({ theme }) => ({
-  color: "#232A45", 
+  color: "#232A45",
   fontSize: "18px",
   lineHeight: "1.6",
   maxWidth: "600px",
@@ -22,12 +23,12 @@ const StyledText = styled(Typography)(({ theme }) => ({
 }));
 
 const HighlightedText = styled("span")(() => ({
-  color: "#FD4802", 
+  color: "#FD4802",
   fontWeight: "bold",
 }));
 
 const StyledButton = styled(Button)(() => ({
-  backgroundColor: "#14235E", 
+  backgroundColor: "#14235E",
   color: "white",
   padding: "10px 20px",
   fontSize: "16px",
@@ -87,7 +88,9 @@ const FounderStory = () => {
           <Typography variant="body1" sx={{ color: "#14235E", fontStyle: "italic", mb: 2, fontFamily: "Decalotype, sans-serif" }}>
             Incloz vous fait un devis*
           </Typography>
-          <StyledButton>Remplir la fiche de renseignement</StyledButton>
+          <StyledButton component={Link} to="/custom-request">
+            Remplir la fiche de renseignement
+          </StyledButton>
         </Grid>
       </Grid>
     </StoryContainer>
