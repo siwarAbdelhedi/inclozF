@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import "./App.css";
 import theme from "./theme";
+
+//Import components
 import Header from "./components/Navbar/Header";
 import HomeScreen from "./components/HomeScreen/Home";
 import Footer from "./components/Footer";
@@ -14,7 +16,7 @@ import DashboardPage from "./pages/DashboardPage";
 import LoginForm from "./components/Auth/LoginForm";
 import RegisterForm from "./components/Auth/RegisterForm";
 import ProductDetail from "./components/BoutiquePages/ProductDetail";
-
+import CustomRequest from "./components/Forms/CustomRequest";
 
 const App = () => {
   return (
@@ -32,6 +34,7 @@ const App = () => {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="custom-request" element={<CustomRequest />} />
         </Routes>
         <Footer />
       </Router>
