@@ -7,7 +7,6 @@ import {
   ToggleButtonGroup,
   Grid,
   Dialog,
-  DialogTitle,
   DialogActions,
   Radio,
   Container,
@@ -100,7 +99,7 @@ const ProductDetail = () => {
       }
     };
     getProduct();
-  }, [id]);
+  }, [id, API_URL]);
 
   const handleAddToCart = () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -214,13 +213,68 @@ const ProductDetail = () => {
             </Grid>
           </Grid>
 
-          <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
-            <DialogTitle>Produit ajouté au panier !</DialogTitle>
-            <DialogActions>
-              <Button onClick={() => setDialogOpen(false)}>Continuer</Button>
-              <Button variant="contained" onClick={() => navigate("/panier")}>Voir le panier</Button>
-            </DialogActions>
-          </Dialog>
+          <Dialog
+  open={dialogOpen}
+  onClose={() => setDialogOpen(false)}
+  PaperProps={{
+    sx: {
+      borderRadius: "4px",
+      maxWidth: "500px",
+      p: 2,
+    },
+  }}
+>
+  <Box>
+    <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 1 }}>
+      <Typography variant="subtitle1" fontWeight="bold" color="secondary.main">
+        Nouvel article ajouté au panier
+      </Typography>
+      <Button onClick={() => setDialogOpen(false)} sx={{ minWidth: "auto", color: "#14235E", fontSize: 20 }}>
+        ×
+      </Button>
+    </Box>
+    <Box sx={{ borderBottom: "1px solid #ccc", mb: 2 }} />
+
+    <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+      {/* Cadre orange avec image */}
+      <Box sx={{ width: 80, height: 80, backgroundColor: "#FD5C35", display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <Box
+          component="img"
+          src={`https://api.incloz.com/uploads/${product.image}`}
+          alt={product.title}
+          sx={{ width: "70%", height: "auto", objectFit: "contain" }}
+        />
+      </Box>
+
+      {/* Infos produit */}
+      <Box sx={{ flexGrow: 1 }}>
+        <Typography sx={{ fontWeight: "bold", color: "#14235E" }}>{product.title}</Typography>
+        <Typography fontStyle="italic" color="#14235E" fontSize="0.9rem" mb={0.5}>
+          {product.subtitle || "T-shirt 100% adaptable"}
+        </Typography>
+        <Typography fontSize="0.85rem" fontWeight="500" color="#14235E">
+          Taille {size} – {adaptation.charAt(0).toUpperCase() + adaptation.slice(1)}
+        </Typography>
+      </Box>
+
+      {/* Prix */}
+      <Typography fontWeight="bold" color="#14235E" fontSize="1.3rem">
+        {product.price} €
+      </Typography>
+    </Box>
+
+    {/* Boutons existants */}
+    <DialogActions sx={{ mt: 3 }}>
+      <Button onClick={() => setDialogOpen(false)} sx={{ color: "#14235E" }}>
+        Continuer
+      </Button>
+      <Button variant="contained" onClick={() => navigate("/panier")}>
+        Voir le panier
+      </Button>
+    </DialogActions>
+  </Box>
+</Dialog>
+
         </Container>
       </Box>
     </ThemeProvider>
