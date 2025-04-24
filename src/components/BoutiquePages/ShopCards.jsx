@@ -11,28 +11,33 @@ import {
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import axios from "axios";
+import bgPattern from "../../assets/photo2.png";
 
-const StyledCard = styled(Card)({
+// Styled components adaptés pour correspondre au design
+const StyledCard = styled(Card)(() => ({
   backgroundColor: "white",
-  borderRadius: "10px",
-  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  borderRadius: "12px",
+  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
   height: "100%",
   display: "flex",
   flexDirection: "column",
-  overflow: "visible",
+  justifyContent: "space-between",
   position: "relative",
-});
+  maxWidth: 230,
+  minHeight: 80,
+  paddingBottom: "40px",
+}));
 
 const ImageContainer = styled(Box)({
   backgroundColor: "#FD5C35",
-  borderTopLeftRadius: "10px",
-  borderTopRightRadius: "10px",
+  borderTopLeftRadius: "12px",
+  borderTopRightRadius: "12px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  height: "180px",
-  width: "100%",
-  marginBottom: "0",
+  height: "150px",
+  padding: "20px",
+  position: "relative",
 });
 
 const AddButton = styled(Button)({
@@ -49,6 +54,7 @@ const AddButton = styled(Button)({
   left: "50%",
   transform: "translateX(-50%)",
   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+  zIndex: 10,
   "&:hover": {
     backgroundColor: "#e54402",
   },
@@ -60,18 +66,40 @@ const ShopCards = () => {
   const API_URL = import.meta.env.VITE_API_URL;
   const IMG_URL = import.meta.env.VITE_IMG_URL;
 
-
+  // Mock data temporaire pour le développement
   useEffect(() => {
     const fetchProducts = async () => {
       try {
+        // Essayer d'abord l'appel API
         const { data } = await axios.get(`${API_URL}/products`);
         setItems(data);
       } catch (err) {
         console.error("Failed to load products", err);
+        // Fallback aux données par défaut en cas d'erreur
+        setItems([
+          {
+            _id: '1',
+            title: 'T-shirt Fitness',
+            description: 'T-shirt en coton alliant style, confort et facilité d\'utilisation',
+            image: 'tshirt.png'
+          },
+          {
+            _id: '2',
+            title: 'Jogging Fitness',
+            description: 'Jogging en coton alliant style, confort et facilité d\'utilisation',
+            image: 'jogging.png'
+          },
+          {
+            _id: '3',
+            title: 'Short Fitness',
+            description: 'Short en coton alliant style, confort et facilité d\'utilisation',
+            image: 'short.png'
+          }
+        ]);
       }
     };
     fetchProducts();
-  }, []);
+  }, [API_URL]);
 
   const handleAddToCart = (id) => {
     navigate(`/product/${id}`);
@@ -81,59 +109,88 @@ const ShopCards = () => {
     <Box
       sx={{
         backgroundColor: "#14235E",
-        py: 6,
+        backgroundImage: `url(${bgPattern})`,
+        backgroundRepeat: "repeat",
+        py: 10,
         px: 2,
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
         alignItems: "center",
+        overflow: "visible",
       }}
     >
-      <Grid
-        container
-        spacing={3}
-        justifyContent="center"
-        sx={{
-          width: "100%",
-          margin: "0 auto",
-          maxWidth: { xs: "100%", sm: "90%", md: "1200px" },
-        }}
-      >
+      {/* Titre avec étiquette */}
+      <Box sx={{ textAlign: "center", mb: 8, position: "relative" }}>
+        <Box
+          sx={{
+            backgroundColor: "white",
+            px: 6,
+            py: 1.5,
+            borderRadius: "20px",
+            display: "inline-block",
+            fontWeight: "bold",
+            fontSize: "2.5rem",
+            color: "#14235E",
+          }}
+        >
+          La boutique
+        </Box>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "100%",
+            left: "50%",
+            transform: "translateX(-50%) rotate(-5deg)",
+            backgroundColor: "#FD4802",
+            color: "white",
+            px: 3,
+            py: 0.7,
+            borderRadius: "8px",
+            mt: 1,
+            fontSize: "0.9rem",
+            fontWeight: 500,
+            whiteSpace: "nowrap",
+          }}
+        >
+          Une collection qui s&apos;adapte à vous
+        </Box>
+      </Box>
+
+      <Grid container spacing={4} justifyContent="center">
         {items.map((item) => (
-          <Grid item xs={12} sm={6} md={3} key={item._id}>
-            <StyledCard>
+          <Grid item 
+          xs={12} sm={6} md={4} lg={3} 
+          key={item._id}
+          sx={{ mb: { xs: 4, sm: 0 } }}
+          >
+            <StyledCard sx={{
+                  position: "relative",
+                  overflow: "visible",
+                  mx: "auto",
+                  maxWidth: { xs: 240, sm: 250, md: 230 },
+                  minHeight: { xs: 280, sm: 300, md: 320 },
+             }}>
               <ImageContainer>
                 <CardMedia
                   component="img"
                   image={`${IMG_URL}/${item.image}`}
                   alt={item.title}
                   sx={{
+                    height: { xs: "90px", sm: "110px", md: "120px" },
                     width: "auto",
-                    height: "70%",
                     objectFit: "contain",
-                    padding: "20px",
+                    margin: "auto"
                   }}
                 />
               </ImageContainer>
-              <CardContent
-                sx={{
-                  pt: 3,
-                  pb: 4,
-                  textAlign: "center",
-                  px: 2,
-                  backgroundColor: "white",
-                  borderBottomLeftRadius: "10px",
-                  borderBottomRightRadius: "10px",
-                }}
-              >
+              <CardContent sx={{ pt: 3, pb: 6, textAlign: "center" }}>
                 <Typography
                   variant="h6"
-                  sx={{
-                    color: "#14235E",
-                    fontWeight: "bold",
-                    mb: 1,
-                    fontSize: "1.1rem",
+                  sx={{ 
+                    color: "#14235E", 
+                    fontWeight: "bold", 
+                    fontSize: { xs: "1rem", sm: "1.1rem", md: "1.25rem" }
                   }}
                 >
                   {item.title}
@@ -142,24 +199,59 @@ const ShopCards = () => {
                   variant="body2"
                   sx={{
                     color: "#14235E",
-                    opacity: 0.8,
-                    fontSize: "0.875rem",
-                    lineHeight: 1.5,
+                    mt: 1.5,
+                    fontSize: { xs: "0.75rem", sm: "0.8rem", md: "0.85rem" },
+                    px: 1,
+                    lineHeight: 1.4
                   }}
                 >
                   {item.description}
                 </Typography>
-                <AddButton
-                  onClick={() => handleAddToCart(item._id)}
-                  variant="contained"
-                >
-                  +
-                </AddButton>
               </CardContent>
+              <AddButton
+                onClick={() => handleAddToCart(item._id)}
+                variant="contained"
+                sx={{
+                  position: "absolute",
+                  bottom: "-15px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  zIndex: 5,
+                  borderRadius: "50%",
+                  width: "40px",
+                  height: "40px",
+                  minWidth: 0,
+                  padding: 0
+                }}
+              >
+                +
+              </AddButton>
             </StyledCard>
           </Grid>
         ))}
       </Grid>
+
+      <Button
+        variant="contained"
+        sx={{
+          mt: 8,
+          backgroundColor: "#FFE5CF",
+          color: "#14235E",
+          fontWeight: "bold",
+          fontSize: "1rem",
+          textTransform: "none",
+          px: 5,
+          py: 1.2,
+          borderRadius: "16px",
+          boxShadow: "0 4px 6px rgba(0,0,0,0.15)",
+          "&:hover": {
+            backgroundColor: "#F8D9BC",
+          }
+        }}
+        onClick={() => navigate("/boutique")}
+      >
+        Je découvre la boutique
+      </Button>
     </Box>
   );
 };
