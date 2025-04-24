@@ -1,30 +1,34 @@
 import { useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import MenuIcon from "@mui/icons-material/Menu";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Button,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 
 const pages = [
-  { label: "La boutique", path: "/boutique" },
   { label: "Qui sommes nous ?", path: "/about" },
+  { label: "La boutique", path: "/boutique" },
+  { label: "Nos adaptations", path: "/adaptations" },
   { label: "Blog", path: "/blog" },
-  { label: "Contact", path: "/ContactForm" },
 ];
 
-// Styled Navbar
-const StyledAppBar = styled(AppBar)(() => ({
+const StyledAppBar = styled(AppBar)({
   backgroundColor: "#FFF6EB",
   color: "#14235E",
   boxShadow: "none",
-}));
+});
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -41,7 +45,7 @@ const NavButtons = styled(Box)(({ theme }) => ({
   },
 }));
 
-const StyledButton = styled(Button)(() => ({
+const StyledButton = styled(Button)({
   color: "#14235E",
   fontFamily: "Decalotype, sans-serif",
   fontSize: "16px",
@@ -50,9 +54,9 @@ const StyledButton = styled(Button)(() => ({
   "&:hover": {
     backgroundColor: "#FCDAAF",
   },
-}));
+});
 
-const ConnectButton = styled(Button)(() => ({
+const ConnectButton = styled(Button)({
   backgroundColor: "#FD4802",
   color: "#FFF6EB",
   fontFamily: "Decalotype, sans-serif",
@@ -64,95 +68,36 @@ const ConnectButton = styled(Button)(() => ({
   "&:hover": {
     backgroundColor: "#14235E",
   },
-}));
+});
 
 function Header() {
-  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const toggleDrawer = () => {
+    setMobileOpen(!mobileOpen);
   };
 
   return (
-    <StyledAppBar position="static">
+    <StyledAppBar position="fixed">
       <StyledToolbar>
-        {/* Box to wrap Menu and Logo for correct order */}
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 2,
-          }}
-        >
-          {/* Burger Menu */}
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="menu"
-              onClick={handleOpenNavMenu}
-              sx={{ color: "#14235E" }}
-            >
+        {/* Left: Burger + Logo */}
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Box sx={{ display: { xs: "block", md: "none" } }}>
+            <IconButton onClick={toggleDrawer} sx={{ color: "#FD4802" }}>
               <MenuIcon />
             </IconButton>
-
-            <Menu
-              anchorEl={anchorElNav}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: "block", md: "none" } }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page.label} onClick={handleCloseNavMenu}>
-                  <Button
-                    component={Link}
-                    to={page.path}
-                    sx={{
-                      color: "#14235E",
-                      fontFamily: "Decalotype, sans-serif",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {page.label}
-                  </Button>
-                </MenuItem>
-              ))}
-            </Menu>
-            {/* Burger Menu */}
-            <MenuItem onClick={handleCloseNavMenu}>
-  <Button
-    component={Link}
-    to="/login"
-    sx={{
-      color: "#14235E",
-      fontFamily: "Decalotype, sans-serif",
-      fontWeight: "bold",
-    }}
-  >
-    Se connecter
-  </Button>
-</MenuItem>
-
           </Box>
 
-          {/* Logo */}
           <Box
             component={Link}
             to="/"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              textDecoration: "none",
-            }}
+            sx={{ display: "flex", alignItems: "center" }}
           >
             <img src={Logo} alt="Incloz Logo" style={{ height: "30px" }} />
           </Box>
         </Box>
 
-        {/* Desktop Navigation */}
+        {/* Center: Navigation */}
         <NavButtons>
           {pages.map((page) => (
             <StyledButton key={page.label} component={Link} to={page.path}>
@@ -161,7 +106,7 @@ function Header() {
           ))}
         </NavButtons>
 
-        {/* Right-side Buttons (Login & Cart) */}
+        {/* Right: Se connecter + panier */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <ConnectButton
             variant="contained"
@@ -174,12 +119,79 @@ function Header() {
           <IconButton
             component={Link}
             to="/panier"
-            sx={{ color: "#14235E" }}
+            sx={{ color: "#FD4802" }}
           >
             <ShoppingCartIcon />
           </IconButton>
         </Box>
       </StyledToolbar>
+
+      {/* Mobile Drawer */}
+      <Drawer anchor="left" open={mobileOpen} onClose={toggleDrawer}>
+        <Box
+          sx={{
+            width: 300,
+            backgroundColor: "#FFF6EB",
+            height: "100%",
+            px: 3,
+            py: 4,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 3,
+          }}
+        >
+          <IconButton
+            onClick={toggleDrawer}
+            sx={{
+              alignSelf: "flex-start",
+              color: "#FD4802",
+              mb: 2,
+              ml: -1,
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+
+          <List>
+            {pages.map((page) => (
+              <ListItem
+                button
+                key={page.label}
+                component={Link}
+                to={page.path}
+                onClick={toggleDrawer}
+              >
+                <ListItemText
+                  primary={page.label}
+                  primaryTypographyProps={{
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    color: "#14235E",
+                    fontFamily: "Decalotype, sans-serif",
+                  }}
+                />
+              </ListItem>
+            ))}
+            <ListItem
+              button
+              component={Link}
+              to="/login"
+              onClick={toggleDrawer}
+            >
+              <ListItemText
+                primary="Se connecter"
+                primaryTypographyProps={{
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  color: "#14235E",
+                  fontFamily: "Decalotype, sans-serif",
+                }}
+              />
+            </ListItem>
+          </List>
+        </Box>
+      </Drawer>
     </StyledAppBar>
   );
 }

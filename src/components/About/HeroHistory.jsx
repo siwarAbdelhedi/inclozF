@@ -1,8 +1,13 @@
 import { Box, Typography, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import bgPattern from "../../assets/photo2.png";
+
 
 const HeroContainer = styled(Box)(() => ({
-  backgroundColor: "#FD5C35", 
+  backgroundColor: "#FD5C35",
+  backgroundImage: `url(${bgPattern})`,
+  backgroundRepeat: "repeat",
+  backgroundSize: "cover",
   padding: "40px 20px",
   textAlign: "center",
   display: "flex",
@@ -12,6 +17,7 @@ const HeroContainer = styled(Box)(() => ({
   position: "relative",
   fontFamily: "Decalotype, sans-serif",
 }));
+
 
 const Wave = styled("div")(() => ({
   position: "absolute",
@@ -45,7 +51,7 @@ const StyledButton = styled(Button)(() => ({
 
 const HeroSection = () => {
   return (
-    <HeroContainer>
+    <HeroContainer sx={{ marginTop: '70px' }}>
       <Typography variant="h4" fontWeight="bold" color="#232A45">
         Incloz, le style qui vous suit.
       </Typography>

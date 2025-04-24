@@ -118,6 +118,7 @@ const ShopCards = () => {
         flexDirection: "column",
         alignItems: "center",
         overflow: "visible",
+        marginTop: '70px'
       }}
     >
       {/* Titre avec étiquette */}

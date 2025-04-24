@@ -61,7 +61,7 @@ const StyledButton = styled(Button)(() => ({
 
 const Hero = () => {
   return (
-    <HeroContainer>
+    <HeroContainer sx={{ marginTop: '70px' }}>
       <TextContainer>
         <Typography
           variant="h2"
