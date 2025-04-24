@@ -3,6 +3,9 @@ import { useState } from "react";
 import bgPattern from "../../assets/photo2.png";
 import axios from "axios";
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 const CustomRequest = () => {
   const [formData, setFormData] = useState({
     nom: "", prenom: "", email: "", telephone: "",
@@ -25,7 +28,7 @@ const CustomRequest = () => {
     Object.entries(formData).forEach(([key, value]) => data.append(key, value));
 
     try {
-      await axios.post("http://localhost:5000/api/custom-request", data, {
+      await axios.post(`${API_URL}/custom-request`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("Demande envoyée !");
@@ -35,15 +38,41 @@ const CustomRequest = () => {
   };
 
   return (
-    <Box sx={{
+    <Box 
+    sx={{
       backgroundColor: "#FFF6EB",
       backgroundImage: `url(${bgPattern})`,
       backgroundRepeat: "repeat",
-      px: 4, py: 10,
-    }}>
-      <Typography variant="h4" fontWeight="bold" color="#14235E" mb={4}>
-        Fiche de renseignement
-      </Typography>
+      minHeight: "100vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "flex-start",
+      py: 10,
+      px: 2,
+      marginTop: '70px'
+
+    }}
+    >
+
+<Box
+    sx={{
+      width: "100%",
+      maxWidth: 600,
+      backgroundColor: "#fff7f0",
+      borderRadius: "16px",
+      padding: 4,
+      boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+    }}
+  >
+    <Typography
+      variant="h4"
+      fontWeight="bold"
+      color="#14235E"
+      mb={4}
+      textAlign="center"
+    >
+      Fiche de renseignement
+    </Typography>
 
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
@@ -121,6 +150,7 @@ const CustomRequest = () => {
           </Grid>
         </Grid>
       </form>
+    </Box>
     </Box>
   );
 };
