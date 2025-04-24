@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
+import "./App.css";
+import theme from "./theme";
 import Header from "./components/Navbar/Header";
 import HomeScreen from "./components/HomeScreen/Home";
 import Footer from "./components/Footer";
@@ -13,15 +15,6 @@ import LoginForm from "./components/Auth/LoginForm";
 import RegisterForm from "./components/Auth/RegisterForm";
 import ProductDetail from "./components/BoutiquePages/ProductDetail";
 
-const theme = createTheme({
-  palette: {
-    primary: { main: "#FD4802" },
-    secondary: { main: "#14235E" },
-    background: { default: "#FFF6EB" },
-    text: { primary: "#14235E" },
-  },
-  typography: { fontFamily: "Decalotype" },
-});
 
 const App = () => {
   return (
