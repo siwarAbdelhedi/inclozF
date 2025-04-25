@@ -28,8 +28,11 @@ const StyledCard = styled(Card)(() => ({
   paddingBottom: "40px",
 }));
 
-const ImageContainer = styled(Box)({
+const ImageContainer = styled(Box)(() => ({
   backgroundColor: "#FD5C35",
+  backgroundImage: `url(${bgPattern})`,
+  backgroundRepeat: "repeat",
+  backgroundSize: "cover",
   borderTopLeftRadius: "12px",
   borderTopRightRadius: "12px",
   display: "flex",
@@ -38,7 +41,8 @@ const ImageContainer = styled(Box)({
   height: "150px",
   padding: "20px",
   position: "relative",
-});
+}));
+
 
 const AddButton = styled(Button)({
   backgroundColor: "#FD4802",

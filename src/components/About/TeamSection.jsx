@@ -2,12 +2,12 @@ import { Box, Grid, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 import bgPattern from "../../assets/photo2.png";
-import Siwar from "../../assets/avatare.png";
-import Marina from "../../assets/avatare.png";
-import Julia from "../../assets/avatare.png";
-import Robin from "../../assets/avatare2.png";
-import Apolline from "../../assets/avatare.png";
-import Lea from "../../assets/avatare.png";
+import Siwar from "../../assets/siwar.png";
+import Marina from "../../assets/marina.png";
+import Julia from "../../assets/julia.png";
+import Robin from "../../assets/robin.png";
+import Apolline from "../../assets/appoline.png";
+import Lea from "../../assets/léa.png";
 
 const members = [
     { name: "Siwar Abdelhedi", role: "Tech lead", image: Siwar },
@@ -22,7 +22,7 @@ const members = [
     backgroundColor: "#14235E",
     backgroundImage: `url(${bgPattern})`,
     backgroundRepeat: "repeat",
-    backgroundSize: "400px",
+    backgroundSize: "contain",
     backgroundPosition: "center",
     padding: theme.spacing(8, 2),
     textAlign: "center",
