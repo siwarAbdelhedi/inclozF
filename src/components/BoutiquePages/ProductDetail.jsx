@@ -142,7 +142,8 @@ const ProductDetail = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ backgroundColor: "#FFF6EB", minHeight: "100vh", py: 4 }}>
+      <Box sx={{ backgroundColor: "#FFF6EB", minHeight: "100vh", py: 4, marginTop: '70px'
+}}>
         <Container maxWidth="lg">
           <Grid container spacing={6}>
             <Grid item xs={12} md={5} lg={4}>
